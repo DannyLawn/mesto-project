@@ -1,0 +1,8 @@
+.elements__info-unit {
+  box-sizing: inherit;
+  height: 79px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}

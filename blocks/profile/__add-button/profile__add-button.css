@@ -1,0 +1,23 @@
+.profile__add-button {
+  background-color: #000;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  margin: 0 0 4px auto;
+  padding: 0;
+  align-self: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile__add-button::before {
+  content: "";
+  background: url(../../../images/Add\ Button.svg) no-repeat center / contain;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

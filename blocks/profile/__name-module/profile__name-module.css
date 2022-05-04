@@ -1,0 +1,4 @@
+.profile__name-module {
+  display: flex;
+  flex-wrap: nowrap;
+}

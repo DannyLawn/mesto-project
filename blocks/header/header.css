@@ -1,0 +1,6 @@
+.header {
+  box-sizing: inherit;
+  height: 119px;
+  border-bottom: 1px solid #545454;
+  display: flex;
+}
