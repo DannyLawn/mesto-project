@@ -6,19 +6,25 @@
 }
 
 @media screen and (max-width: 1279px)  {
-  .page__container{
+  .page__container {
     padding: 0 16%;
   }
 }
 
-/* @media screen and (max-width: 992px)  {
+@media screen and (max-width: 992px)  {
   .page__container{
-  
+    padding: 0 8%;
+  }
+}
+
+/* @media screen and (max-width: 768px)  {
+  .page__container {
+
   }
 } */
 
-@media screen and (max-width: 768px)  {
-  .page__container{
-    padding: 0 6%;
+@media screen and (max-width: 576px)  {
+  .page__container {
+    padding: 0;
   }
 }

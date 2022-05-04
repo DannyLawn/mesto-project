@@ -1,6 +1,13 @@
 .header {
-  box-sizing: inherit;
-  height: 119px;
+  box-sizing: content-box;
+  height: 74px;
+  padding-top: 45px;
   border-bottom: 1px solid #545454;
-  display: flex;
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    height: 55px;
+    padding: 28px 8.5% 0;
+  }
 }

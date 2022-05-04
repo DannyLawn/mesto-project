@@ -6,3 +6,12 @@
   line-height: 22px;
   padding-top: 68px;
 }
+
+@media screen and (max-width: 576px) {
+  .footer__signature {
+    padding-top: 51px;
+    font-size: 14px;
+    line-height: 17px;
+    align-self: center;
+  }
+}

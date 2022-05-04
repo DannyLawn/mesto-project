@@ -2,3 +2,9 @@
   width: 100%;
   box-sizing: inherit;
 }
+
+@media screen and (max-width: 768px)  {
+  .content {
+    padding: 0 6%;
+  }
+}

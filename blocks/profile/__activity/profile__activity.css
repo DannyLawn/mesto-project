@@ -5,3 +5,17 @@
   line-height: 22px;
   font-weight: 400;
 }
+
+@media screen and (max-width: 992px)  {
+  .profile__activity {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 576px)  {
+  .profile__activity {
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 8px;
+  }
+}

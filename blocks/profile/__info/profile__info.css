@@ -1,4 +1,21 @@
 .profile__info {
+  box-sizing: inherit;
+  width: 336px;
   color: #fff;
   padding: calc(62px - 40px) 0 calc(75px - 50px) 30px;
+}
+
+@media screen and (max-width: 992px)  {
+  .profile__info {
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile__info {
+    width: 282px;
+    padding: 0;
+    align-self: start;
+  }
 }
