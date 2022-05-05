@@ -1,20 +1,19 @@
 .profile__name-module {
-  box-sizing: inherit;
-  width: 336px;
   display: flex;
+  width: 100%;
 }
 
 @media screen and (max-width: 992px) {
   .profile__name-module {
-    align-self: start;
+    align-content: start;
     margin: 0 auto;
   }
 }
 
   @media screen and (max-width: 576px) {
     .profile__name-module {
-      width: 282px;
       justify-content: center;
-      padding: 26px 0 0 28px;
+      margin: 0;
+      gap: 10px;
     }
   }

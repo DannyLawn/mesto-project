@@ -5,10 +5,9 @@
   border: 2px solid #fff;
   border-radius: 2px;
   padding: 0;
-  margin-bottom: 3px;
+  margin-left: auto;
   position: relative;
   cursor: pointer;
-  justify-self: end;
   align-self: center;
 }
 
@@ -26,18 +25,13 @@
 
 @media screen and (max-width: 992px)  {
   .profile__add-button {
-    margin-bottom: 0;
-    justify-self: center;
-    align-self: end;
-  }
+    margin: 33px auto 0;
+  } 
 }
 
 @media screen and (max-width: 576px)  {
   .profile__add-button {
     width: 100%;
-    margin: 0;
-    margin-bottom: 8px;
-    align-self: center;
   }
 
   .profile__add-button::before {
