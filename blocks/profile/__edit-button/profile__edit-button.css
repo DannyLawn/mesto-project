@@ -2,10 +2,12 @@
   background-color: #000;
   width: 24px;
   height: 24px;
-  cursor: pointer;
+  padding: 0;
   border: 1px solid #fff;
   position: relative;
   margin: 14px 0 0 20px;
+  outline: none; /* в макете не нашел значений для элемента */
+  z-index: -1;
 }
 
 .profile__edit-button::after {

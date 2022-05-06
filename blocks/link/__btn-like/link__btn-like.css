@@ -1,8 +1,9 @@
-.link__like {
+.link__btn-like {
   transition: opacity .14s ease-in;
   opacity: 1;
+  cursor: pointer;
 }
 
-.link__like:hover {
+.link__btn-like:hover {
   opacity: .5;
 }

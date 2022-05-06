@@ -1,0 +1,32 @@
+.input__text {
+  box-sizing: border-box;
+  font-family: inherit;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 27px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 30px;
+  padding: 0 0 8px 0;
+  outline: none; /* в макете не нашел значений для элемента */
+}
+
+.input__text[id="input-activity"] {
+  margin-bottom: 0;
+}
+
+.input__text::placeholder {
+  font-family: inherit;
+}
+.input__text::-webkit-input-placeholder {
+  font-family: inherit;
+}
+.input__text::-moz-placeholder {
+  font-family: inherit;
+}
+.input__text::-ms-input-placeholder {
+  font-family: inherit;
+}
+

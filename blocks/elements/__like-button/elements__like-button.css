@@ -1,7 +1,10 @@
 .elements__like-button {
   display: block;
+  border: none;
+  padding: 0;
   margin: 0 20px 0 0;
   width: 22px ;
   height: 19px;
+  outline: none; /* в макете не нашел значений для аутлайнов элемента */
   background: url(../../../images/Like\ Button.svg) no-repeat center / contain;
 }

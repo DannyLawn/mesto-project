@@ -7,8 +7,9 @@
   padding: 0;
   margin-left: auto;
   position: relative;
-  cursor: pointer;
   align-self: center;
+  outline: none; /* в макете не нашел значений для элемента */
+  z-index: -1;
 }
 
 .profile__add-button::before {
