@@ -2,6 +2,7 @@
   transition: opacity .14s ease-in;
   opacity: 1;
   cursor: pointer;
+  z-index: 2;
 }
 
 .link:hover {
