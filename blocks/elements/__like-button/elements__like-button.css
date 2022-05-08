@@ -7,4 +7,10 @@
   height: 19px;
   outline: none; /* в макете не нашел значений для аутлайнов элемента */
   background: url(../../../images/Like\ Button.svg) no-repeat center / contain;
+  transition: opacity .14s ease-in;
+  cursor: pointer;
+}
+
+.elements__like-button:hover {
+  opacity: .5;
 }

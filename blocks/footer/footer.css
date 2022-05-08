@@ -1,12 +1,10 @@
 .footer {
   box-sizing: inherit;
   width: 100%;
-  min-height: 144px;
 }
 
 @media screen and (max-width: 576px) {
   .footer {
     padding: 0 6%;
-    min-height: 98px;
   }
 }

@@ -4,7 +4,7 @@
   min-width: 120px;
   overflow: hidden;
   border-radius: 50%;
-  display: flex;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 992px)  {

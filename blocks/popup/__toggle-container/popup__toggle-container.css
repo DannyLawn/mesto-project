@@ -1,0 +1,11 @@
+.popup__toggle-container {
+  width: calc(430px + (40px * 2));
+  display: flex;
+  justify-content: end;
+}
+
+@media screen and (max-width: 576px) {
+  .popup__toggle-container {
+    width: 88%;
+  }
+}

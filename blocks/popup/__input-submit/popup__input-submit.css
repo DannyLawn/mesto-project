@@ -1,4 +1,4 @@
-.input__submit {
+.popup__input-submit {
   box-sizing: border-box;
   width: 100%;
   height: 50px;
@@ -9,12 +9,18 @@
   line-height: 22px;
   margin-top: 48px;
   border-radius: 2px;
+  border: 0;
   outline: none; /* в макете не нашел значений для элемента */
+  cursor: pointer;
+}
+
+.popup__input-submit:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 576px) {
-  .input__submit {
-    margin-top: 45px;
+  .popup__input-submit {
+    margin-top: 44px;
     height: 46px;
     font-size: 14px;
     line-height: 17px;

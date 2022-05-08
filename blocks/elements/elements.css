@@ -2,8 +2,9 @@
   box-sizing: inherit;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 282px));
-  grid-template-rows: repeat(auto-fit, minmax(361px, 361px));
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: repeat(auto-fit, 361px);
+  grid-auto-rows: 361px;
   gap: 20px 17px;
   justify-content: center;
 }

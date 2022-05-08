@@ -1,15 +1,16 @@
 .footer__signature {
   display: block;
+  margin: 0;
   color: #545454;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  padding-top: 68px;
+  padding: 66px 0 57px;
 }
 
 @media screen and (max-width: 576px) {
   .footer__signature {
-    padding-top: 51px;
+    padding: 52px 0 31px;
     font-size: 14px;
     line-height: 17px;
     align-self: center;

@@ -1,4 +1,4 @@
-.input__text {
+.popup__input-text {
   box-sizing: border-box;
   font-family: inherit;
   border: 0;
@@ -9,24 +9,24 @@
   font-size: 14px;
   line-height: 17px;
   margin-bottom: 30px;
-  padding: 0 0 8px 0;
+  padding: 0 0 7px 0;
   outline: none; /* в макете не нашел значений для элемента */
 }
 
-.input__text[id="input-activity"] {
+.popup__input-text:last-child {
   margin-bottom: 0;
 }
 
-.input__text::placeholder {
+.popup__input-text::placeholder {
   font-family: inherit;
 }
-.input__text::-webkit-input-placeholder {
+.popup__input-text::-webkit-input-placeholder {
   font-family: inherit;
 }
-.input__text::-moz-placeholder {
+.popup__input-text::-moz-placeholder {
   font-family: inherit;
 }
-.input__text::-ms-input-placeholder {
+.popup__input-text::-ms-input-placeholder {
   font-family: inherit;
 }
 

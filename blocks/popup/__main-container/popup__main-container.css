@@ -1,0 +1,17 @@
+.popup__main-container {
+  box-sizing: inherit;
+  background-color: #fff;
+  width: 430px;
+  min-width: 282px;
+  border-radius: 10px;
+  padding: 34px 36px 38px;
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 576px) {
+  .popup__main-container {
+    margin-top: 16px;
+    width: 88%;
+    padding: 25px 22px;
+  }
+}

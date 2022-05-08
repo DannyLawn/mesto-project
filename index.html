@@ -6,32 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="./pages/index.css">
-  <style>
-    @font-face {
-      font-family: 'Inter';
-      font-display: swap;
-      font-weight: normal;
-      src: url(./vendor/fonts/Inter/Inter-Regular.woff2) format('woff2'),
-        url(./vendor/fonts/Inter/Inter-Regular.woff) format('woff'),
-        url(./vendor/fonts/Inter/Inter-Regular.ttf) format('opentype');
-}
-    @font-face {
-      font-family: 'Inter';
-      font-display: swap;
-      font-weight: 500;
-      src: url(./vendor/fonts/Inter/Inter-Medium.woff2) format('woff2'),
-        url(./vendor/fonts/Inter/Inter-Medium.woff) format('woff'),
-        url(./vendor/fonts/Inter/Inter-Medium.ttf) format('opentype');
-}
-    @font-face {
-      font-family: 'Inter';
-      font-display: swap;
-      font-weight: 900;
-      src: url(./vendor/fonts/Inter/Inter-Black.woff2) format('woff2'),
-        url(./vendor/fonts/Inter/Inter-Black.woff) format('woff'),
-        url(./vendor/fonts/Inter/Inter-Black.ttf) format('opentype');
-}
-  </style>
   <title>Место Россия</title>
 </head>
 <body class="page">
@@ -44,30 +18,33 @@
 
       <!-- Для открытия модального окна добавить класс popup_opened в секцию popup -->
       <section class="popup">
-        <div class="popup__container">
-          <button class="popup__toggle link"></button>
-          <form class="popup__edit-profile-form">
+        <div class="popup__toggle-container">
+          <button aria-label="Close" class="popup__toggle" type="button"></button>
+        </div>
+        <div class="popup__main-container">
+          <form class="popup__edit-profile-form" name="edit-profile">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" class="input__text" placeholder="Имя" value="Жак-Ив Кусто" id="input-name">
-            <input type="text" class="input__text" placeholder="Деятельность" value="Исследователь океана" id="input-activity">
-            <input type="submit" class="input__submit link__btn-submit" value="Сохранить">
+            <div class="popup__input-container">
+              <input type="text" class="popup__input-text" placeholder="Имя" value="Жак-Ив Кусто" name="profile-name">
+              <input type="text" class="popup__input-text" placeholder="Деятельность" value="Исследователь океана" name="profile-activity">
+            </div>
+            
+            <input type="submit" class="popup__input-submit" name="save-profile" value="Сохранить">
           </form>
         </div>
   
       </section>
   
       <section class="profile">
-        <div class="profile__avatar">
-          <img class="profile__photo" src="./images/Avatar.jpg" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
-        </div>
+        <img class="profile__avatar" src="./images/Avatar.jpg" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
         <div class="profile__info">
           <div class="profile__name-module">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button link"></button>
+            <button aria-label="Edit" class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__activity">Исследователь океана</p>
         </div>
-        <button class="profile__add-button link"></button>
+        <button aria-label="Add" class="profile__add-button" type="button"></button>
       </section>
 
       <section class="elements">
@@ -75,42 +52,42 @@
           <img class="elements__image" src="./images/places/Karachevsk.jpg" alt="Вид издалека со стороны на, проглядывающийся из-за деревьев, Шоанинский христианский собор.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Карачаевск</h2>
-            <button class="elements__like-button link__btn-like elements__like-button_enabled"></button>
+            <button aria-label="Like" class="elements__like-button elements__like-button_enabled" type="button"></button>
           </div>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/Elbrus.jpg" alt="Оранжевое небо во время заката, на горизонте, через туман, проглядывается силуэт горы Эльбрус.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Гора Эльбрус</h2>
-            <button class="elements__like-button link__btn-like"></button>
+            <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/Dombay.jpg" alt="Лес и горы Домбая в пасмурную погоду.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Домбай</h2>
-            <button class="elements__like-button link__btn-like"></button>
+            <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/CharskySands.jpg" alt="Пустыня в предгорьях Кодарского хребта, а если смотреть в противоположную сторону, можно увидеть далекий снежный хребет Удокан.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Чарские пески</h2>
-            <button class="elements__like-button link__btn-like"></button>
+            <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
         </article>        
         <article class="elements__element">
           <img class="elements__image" src="./images/places/WeatheringPillars.jpg" alt="Тропинка ведущая к гигантским каменным Столбам Выветривания.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Маньпупунёр</h2>
-            <button class="elements__like-button link__btn-like elements__like-button_enabled"></button>
+            <button aria-label="Like" class="elements__like-button elements__like-button_enabled" type="button"></button>
           </div>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/LakeKezenoy-am.jpg" alt="Залитое солнцем изумрудное озеро Кезеной-ам, окруженное крутыми зелеными холмами.">
           <div class="elements__info-unit">
             <h2 class="elements__element-title">Озеро Кезеной-ам</h2>
-            <button class="elements__like-button link__btn-like"></button>
+            <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
         </article>
       </section>
@@ -118,7 +95,7 @@
     </main>
 
     <footer class="footer">
-      <span class="footer__signature">&copy; 2022 Mesto Russia</span>
+      <p class="footer__signature">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>  
 </body>

@@ -1,5 +1,5 @@
 .profile__add-button {
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0);
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
@@ -9,7 +9,8 @@
   position: relative;
   align-self: center;
   outline: none; /* в макете не нашел значений для элемента */
-  z-index: -1;
+  transition: opacity .14s ease-in;
+  cursor: pointer;
 }
 
 .profile__add-button::before {
@@ -22,6 +23,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.profile__add-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 992px)  {
