@@ -1,8 +1,8 @@
 //Модалка редактирования профиля
 let popupProfile = document.querySelector('#profile-popup');
 let popupProfileClose = popupProfile.querySelector('#profile-toggle');
-let formProfileElement = document.querySelector('#edit-profile-form');
-let nameInput =  formProfileElement.querySelector('#inpit-name');
+let formProfile = document.querySelector('#edit-profile-form');
+let nameInput =  formProfile.querySelector('#inpit-name');
 let activityInput = popupProfile.querySelector('#input-activity');
 
 //Профиль
@@ -12,10 +12,20 @@ let nameProfile = profile.querySelector('.profile__name');
 let activityProfile = profile.querySelector('.profile__activity');
 let addCardButton = profile.querySelector('.profile__add-button');
 
-//Открытие редактирования профиля
+//Плавное отображение закрытия/открытия попапа профиля
+function smoothProfileModal() {
+  if (popupProfile.classList.contains('popup_opened') ) {
+    popupProfile.style.transition = 'opacity 0.7s, visibility 0s 0.7s';
+  } else {
+    popupProfile.style.transition = 'visibility 0s, opacity 0.7s';
+  }
+}
+
+//Открытие и закрытие редактирования профиля
 editProfile.addEventListener('click', toggleProfilePopUp);
 
 function toggleProfilePopUp() {
+  smoothProfileModal();
   popupProfile.classList.toggle('popup_opened'); 
   nameInput.value = nameProfile.textContent;
   activityInput.value = activityProfile.textContent;
@@ -30,33 +40,45 @@ function formSubmitProfile (evt) {
   
   nameProfile.textContent = nameInput.value;
   activityProfile.textContent = activityInput.value;
+  smoothProfileModal();
   popupProfile.classList.remove('popup_opened');
 }
  
-formProfileElement.addEventListener('submit', formSubmitProfile);
+formProfile.addEventListener('submit', formSubmitProfile);
  
 
 //Модалка добавления карточек
 let popupCard = document.querySelector('#add-cart-popup');
+let formCard = popupCard.querySelector('#add-card-form');
 let inputCardName = popupCard.querySelector('#inpit-card-name');
 let inputCardImage = popupCard.querySelector('#input-image-link');
 let addCardToggle = popupCard.querySelector('#add-card-toggle');
 
-//Открыте добавления карточек
+//Плавное отображение закрытия/открытия попапа профиля
+function smoothCardModal() {
+  if (popupCard.classList.contains('popup_opened') ) {
+    popupCard.style.transition = 'opacity 0.7s, visibility 0s 0.7s';
+  } else {
+    popupCard.style.transition = 'visibility 0s, opacity 0.7s';
+  }
+}
+
+//Открытие добавления карточек
 addCardButton.addEventListener('click', toggleAddCardPopUp);
 
 function toggleAddCardPopUp() {
+  inputCardName.value = '';
+  inputCardImage.value = '';
+  smoothCardModal();
   popupCard.classList.toggle('popup_opened');
 }
 
-//Закрытие добавления, без сохранения
+//Отмена добавления карточек
 addCardToggle.addEventListener('click', toggleAddCardPopUp);
 
 
 
-
-
-//Карточки для автозагрузки
+//Автозагрузка массива карточек
 const initialCards = [
   {
     name: 'Кучерла',
@@ -84,14 +106,48 @@ const initialCards = [
   }
   ];
 
+let cardsContainer = document.querySelector('.elements');
 
+initialCards.forEach(card => {
+  cardsContainer.insertAdjacentHTML('beforeend', `<article class="elements__element">
+    <img class="elements__image" src="${card.link}">
+    <div class="elements__info-unit">
+    <h2 class="elements__element-title">${card.name}</h2>
+    <button aria-label="Like" class="elements__like-button" type="button"></button>
+    </div></article>`);
+});
+
+
+//Сохранение добавленной карточки
+function formSubmitCard (evt) {
+  evt.preventDefault(); 
   
-//Лайки
-let elements = document.querySelector('.elements');
-let likes = elements.querySelectorAll('.elements__like-button');
+  cardsContainer.insertAdjacentHTML('afterbegin', `<article class="elements__element">
+  <img class="elements__image" src="${inputCardImage.value}">
+  <div class="elements__info-unit">
+  <h2 class="elements__element-title">${inputCardName.value}</h2>
+  <button aria-label="Like" class="elements__like-button" type="button"></button>
+  </div></article>`);
 
-likes.forEach(like => {
+  smoothCardModal();
+  popupCard.classList.remove('popup_opened');
+}
+formCard.addEventListener('submit', formSubmitCard);
+  
+
+//Лайки
+function likeCard() {
+  let elements = document.querySelector('.elements');
+  let likes = elements.querySelectorAll('.elements__like-button');
+
+  likes.forEach(like => {
+  console.log('like');
   like.addEventListener('click', function(){
   like.classList.toggle('elements__like-button_enabled');
   });
 });
+}
+
+likeCard();
+
+
