@@ -17,16 +17,16 @@
     <main class="content">
 
       <!-- Для открытия модального окна добавить класс popup_opened в секцию popup -->
-      <section class="popup">
+      <section class="popup" id ="profile-popup">
         <div class="popup__toggle-container">
-          <button aria-label="Close" class="popup__toggle" type="button"></button>
+          <button aria-label="Close" class="popup__toggle" id="profile-toggle" type="button"></button>
         </div>
         <div class="popup__main-container">
-          <form class="popup__edit-profile-form" name="edit-profile">
+          <form class="popup__edit-form" id="edit-profile-form" name="edit-profile">
             <h2 class="popup__title">Редактировать профиль</h2>
             <div class="popup__input-container">
-              <input type="text" class="popup__input-text" placeholder="Имя" value="Жак-Ив Кусто" name="profile-name">
-              <input type="text" class="popup__input-text" placeholder="Деятельность" value="Исследователь океана" name="profile-activity">
+              <input type="text" class="popup__input-text" id="inpit-name" placeholder="Имя" value="" name="profile-name">
+              <input type="text" class="popup__input-text" id="input-activity" placeholder="Деятельность" value="" name="profile-activity">
             </div>
             
             <input type="submit" class="popup__input-submit" name="save-profile" value="Сохранить">
@@ -34,6 +34,9 @@
         </div>
   
       </section>
+
+<!-- секция попапа добавления карточки ниже-->
+     
   
       <section class="profile">
         <img class="profile__avatar" src="./images/Avatar.jpg" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
@@ -98,5 +101,6 @@
       <p class="footer__signature">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>  
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
