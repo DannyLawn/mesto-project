@@ -1,59 +1,62 @@
-//Popup
+//Модалка редактирования профиля
+let popupProfile = document.querySelector('#profile-popup');
+let popupProfileClose = popupProfile.querySelector('#profile-toggle');
+let formProfileElement = document.querySelector('#edit-profile-form');
+let nameInput =  formProfileElement.querySelector('#inpit-name');
+let activityInput = popupProfile.querySelector('#input-activity');
 
-let popup = document.querySelector('#profile-popup');
-let popupClose = popup.querySelector('#profile-toggle');
-const formElement = document.querySelector('#edit-profile-form');
-const nameInput =  formElement.querySelector('#inpit-name');
-const activityInput = popup.querySelector('#input-activity');
-
-popupClose.addEventListener('click', toggleProfilePopUp);
-
-//Profile
-
+//Профиль
 let profile = document.querySelector('.profile');
 let editProfile = profile.querySelector('.profile__edit-button');
 let nameProfile = profile.querySelector('.profile__name');
 let activityProfile = profile.querySelector('.profile__activity');
-
-editProfile.addEventListener('click', toggleProfilePopUp);
+let addCardButton = profile.querySelector('.profile__add-button');
 
 //Открытие редактирования профиля
+editProfile.addEventListener('click', toggleProfilePopUp);
 
 function toggleProfilePopUp() {
-  popup.classList.toggle('popup_opened'); 
+  popupProfile.classList.toggle('popup_opened'); 
   nameInput.value = nameProfile.textContent;
   activityInput.value = activityProfile.textContent;
 }
 
-//Сохранение редактирования профиля
- 
-function formSubmitHandler (evt) {
+//Закрытие редактирования, без сохранения
+popupProfileClose.addEventListener('click', toggleProfilePopUp);
+
+//Сохранение обновлений профиля
+function formSubmitProfile (evt) {
   evt.preventDefault(); 
   
   nameProfile.textContent = nameInput.value;
   activityProfile.textContent = activityInput.value;
-  popup.classList.remove('popup_opened');
+  popupProfile.classList.remove('popup_opened');
 }
  
-formElement.addEventListener('submit', formSubmitHandler);
+formProfileElement.addEventListener('submit', formSubmitProfile);
  
 
+//Модалка добавления карточек
+let popupCard = document.querySelector('#add-cart-popup');
+let inputCardName = popupCard.querySelector('#inpit-card-name');
+let inputCardImage = popupCard.querySelector('#input-image-link');
+let addCardToggle = popupCard.querySelector('#add-card-toggle');
 
-//Лайки
-let elements = document.querySelector('.elements');
-let likes = elements.querySelectorAll('.elements__like-button');
+//Открыте добавления карточек
+addCardButton.addEventListener('click', toggleAddCardPopUp);
 
-likes.forEach(like => {
-  like.addEventListener('click', function(){
-  like.classList.toggle('elements__like-button_enabled');
-  });
-});
+function toggleAddCardPopUp() {
+  popupCard.classList.toggle('popup_opened');
+}
 
-
+//Закрытие добавления, без сохранения
+addCardToggle.addEventListener('click', toggleAddCardPopUp);
 
 
-//Карточки автозагрузки
 
+
+
+//Карточки для автозагрузки
 const initialCards = [
   {
     name: 'Кучерла',
@@ -80,3 +83,15 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1612257460705-e0d24b7a4808?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387'
   }
   ];
+
+
+  
+//Лайки
+let elements = document.querySelector('.elements');
+let likes = elements.querySelectorAll('.elements__like-button');
+
+likes.forEach(like => {
+  like.addEventListener('click', function(){
+  like.classList.toggle('elements__like-button_enabled');
+  });
+});
