@@ -54,7 +54,7 @@ let inputCardName = popupCard.querySelector('#inpit-card-name');
 let inputCardImage = popupCard.querySelector('#input-image-link');
 let addCardToggle = popupCard.querySelector('#add-card-toggle');
 
-//Плавное отображение закрытия/открытия попапа профиля
+//Плавное отображение закрытия/открытия попапа карточек
 function smoothCardModal() {
   if (popupCard.classList.contains('popup_opened') ) {
     popupCard.style.transition = 'opacity 0.7s, visibility 0s 0.7s';
@@ -63,7 +63,7 @@ function smoothCardModal() {
   }
 }
 
-//Открытие добавления карточек
+//Открытие модалки добавления карточек
 addCardButton.addEventListener('click', toggleAddCardPopUp);
 
 function toggleAddCardPopUp() {
@@ -76,6 +76,17 @@ function toggleAddCardPopUp() {
 //Отмена добавления карточек
 addCardToggle.addEventListener('click', toggleAddCardPopUp);
 
+
+//Обработка лайков добавленных в html разметку карточек
+const cardsContainer = document.querySelector('.elements');
+
+let likesOfAddedCards = cardsContainer.querySelectorAll('.elements__like-button');
+likesOfAddedCards.forEach(likeOfAddedCard => {
+  
+  likeOfAddedCard.addEventListener('click', function(){
+    likeOfAddedCard.classList.toggle('elements__like-button_enabled');
+  });
+});
 
 
 //Автозагрузка массива карточек
@@ -106,48 +117,38 @@ const initialCards = [
   }
   ];
 
-let cardsContainer = document.querySelector('.elements');
-
 initialCards.forEach(card => {
-  cardsContainer.insertAdjacentHTML('beforeend', `<article class="elements__element">
-    <img class="elements__image" src="${card.link}">
-    <div class="elements__info-unit">
-    <h2 class="elements__element-title">${card.name}</h2>
-    <button aria-label="Like" class="elements__like-button" type="button"></button>
-    </div></article>`);
+  addCards(card);
 });
 
 
-//Сохранение добавленной карточки
+//Функция добавления карточек
+function addCards (object) {
+  const cardTemplate = cardsContainer.querySelector('.card-template').content;
+  const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
+  cardElement.querySelector('.elements__image').src = object.link;
+  cardElement.querySelector('.elements__element-title').textContent = object.name;
+
+  cardElement.querySelector('.elements__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like-button_enabled');
+  });
+  
+  cardsContainer.prepend(cardElement);
+  popupCard.classList.remove('popup_opened');
+}
+
+
+//Формирование объекта карточки добавленной пользователем
 function formSubmitCard (evt) {
   evt.preventDefault(); 
   
-  cardsContainer.insertAdjacentHTML('afterbegin', `<article class="elements__element">
-  <img class="elements__image" src="${inputCardImage.value}">
-  <div class="elements__info-unit">
-  <h2 class="elements__element-title">${inputCardName.value}</h2>
-  <button aria-label="Like" class="elements__like-button" type="button"></button>
-  </div></article>`);
-
-  smoothCardModal();
-  popupCard.classList.remove('popup_opened');
+  const addedUserCard = {};
+  addedUserCard.name = inputCardName.value;
+  addedUserCard.link = inputCardImage.value;
+  addCards(addedUserCard);
 }
+ 
 formCard.addEventListener('submit', formSubmitCard);
-  
 
-//Лайки
-function likeCard() {
-  let elements = document.querySelector('.elements');
-  let likes = elements.querySelectorAll('.elements__like-button');
-
-  likes.forEach(like => {
-  console.log('like');
-  like.addEventListener('click', function(){
-  like.classList.toggle('elements__like-button_enabled');
-  });
-});
-}
-
-likeCard();
 
 
