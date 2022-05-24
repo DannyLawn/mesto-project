@@ -33,7 +33,7 @@
         </div>
       </section>
 
-      <section class="popup" id="add-cart-popup">
+      <section class="popup" id="add-card-popup">
         <div class="popup__toggle-container">
           <button aria-label="Close" class="popup__toggle" id="add-card-toggle" type="button"></button>
       </div>
@@ -47,6 +47,16 @@
       
           <input type="submit" class="popup__input-submit" name="save-card" value="Создать">
         </form>
+      </div>
+      </section>
+
+      <section class="popup popup_opened" id="open-card">
+        <div class="popup__toggle-container">
+          <button aria-label="Close" class="popup__toggle" id="add-card-toggle" type="button"></button>
+      </div>
+      <div class="popup__main-container popup__main-container_type-transparent">
+        <img class="popup__image" src="./images/places/LakeKezenoy-am.jpg" alt="Изображение карточки">
+        <h2 class="popup__title popup__title_type-caption">Какая-то там</h2>
       </div>
       </section>
   
@@ -69,6 +79,7 @@
             <h2 class="elements__element-title">Карачаевск</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/Elbrus.jpg" alt="Оранжевое небо во время заката, на горизонте, через туман, проглядывается силуэт горы Эльбрус.">
@@ -76,6 +87,7 @@
             <h2 class="elements__element-title">Гора Эльбрус</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/Dombay.jpg" alt="Лес и горы Домбая в пасмурную погоду.">
@@ -83,6 +95,7 @@
             <h2 class="elements__element-title">Домбай</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/CharskySands.jpg" alt="Пустыня в предгорьях Кодарского хребта, а если смотреть в противоположную сторону, можно увидеть далекий снежный хребет Удокан.">
@@ -90,6 +103,7 @@
             <h2 class="elements__element-title">Чарские пески</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>        
         <article class="elements__element">
           <img class="elements__image" src="./images/places/WeatheringPillars.jpg" alt="Тропинка ведущая к гигантским каменным Столбам Выветривания.">
@@ -97,6 +111,7 @@
             <h2 class="elements__element-title">Маньпупунёр</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>
         <article class="elements__element">
           <img class="elements__image" src="./images/places/LakeKezenoy-am.jpg" alt="Залитое солнцем изумрудное озеро Кезеной-ам, окруженное крутыми зелеными холмами.">
@@ -104,6 +119,7 @@
             <h2 class="elements__element-title">Озеро Кезеной-ам</h2>
             <button aria-label="Like" class="elements__like-button" type="button"></button>
           </div>
+          <button aria-label="Delete" class="elements__delete-button" type="button"></button>
         </article>
 
         <template class="card-template">
@@ -113,6 +129,7 @@
               <h2 class="elements__element-title"></h2>
               <button aria-label="Like" class="elements__like-button" type="button"></button>
             </div>
+            <button aria-label="Delete" class="elements__delete-button" type="button"></button>
           </article>
         </template> 
 
