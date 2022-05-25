@@ -174,4 +174,7 @@ function formSubmitCard (evt) {
 formCard.addEventListener('submit', formSubmitCard);
 
 
+//Реализвация открытия карточки
+
+
 
