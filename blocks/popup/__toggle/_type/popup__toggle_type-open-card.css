@@ -5,15 +5,10 @@
   right: -40px;
 }
 
-@media screen and (max-width: 991px) {
-  .popup__toggle_type-open-card {
-    position: static;
-    align-self: flex-end;
-  }
-}
-
 @media screen and (max-width: 576px) {
   .popup__toggle_type-open-card {
     margin-bottom: 16px;
+    position: static;
+    align-self: flex-end;
   }
 }
