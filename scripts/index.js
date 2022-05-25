@@ -1,17 +1,17 @@
 //Модалка редактирования профиля
-let popupProfile = document.querySelector('#profile-popup');
-let popupProfileClose = popupProfile.querySelector('#profile-toggle');
-let formProfile = document.querySelector('#edit-profile-form');
-let nameInput =  formProfile.querySelector('#inpit-name');
-let activityInput = popupProfile.querySelector('#input-activity');
+const popupProfile = document.querySelector('#profile-popup');
+const popupProfileClose = popupProfile.querySelector('#profile-toggle');
+const formProfile = document.querySelector('#edit-profile-form');
+const nameInput =  formProfile.querySelector('#inpit-name');
+const activityInput = popupProfile.querySelector('#input-activity');
 
 
 //Профиль
-let profile = document.querySelector('.profile');
-let editProfile = profile.querySelector('.profile__edit-button');
-let nameProfile = profile.querySelector('.profile__name');
-let activityProfile = profile.querySelector('.profile__activity');
-let addCardButton = profile.querySelector('.profile__add-button');
+const profile = document.querySelector('.profile');
+const editProfile = profile.querySelector('.profile__edit-button');
+const nameProfile = profile.querySelector('.profile__name');
+const activityProfile = profile.querySelector('.profile__activity');
+const addCardButton = profile.querySelector('.profile__add-button');
 
 
 //Плавное отображение закрытия/открытия попапа профиля
@@ -53,11 +53,11 @@ formProfile.addEventListener('submit', formSubmitProfile);
  
 
 //Модалка добавления карточек
-let popupCard = document.querySelector('#add-card-popup');
-let formCard = popupCard.querySelector('#add-card-form');
-let inputCardName = popupCard.querySelector('#inpit-card-name');
-let inputCardImage = popupCard.querySelector('#input-image-link');
-let addCardToggle = popupCard.querySelector('#add-card-toggle');
+const popupCard = document.querySelector('#add-card-popup');
+const formCard = popupCard.querySelector('#add-card-form');
+const inputCardName = popupCard.querySelector('#inpit-card-name');
+const inputCardImage = popupCard.querySelector('#input-image-link');
+const addCardToggle = popupCard.querySelector('#add-card-toggle');
 
 
 //Плавное отображение закрытия/открытия попапа карточек
@@ -100,7 +100,7 @@ likesOfAddedCards.forEach(likeOfAddedCard => {
 //Обработка удалений карточек, добавленных в html-разметку
 let addedCards = cardsContainer.querySelectorAll('.elements__element');
 addedCards.forEach(addedCard => {
-  let deleteButton = addedCard.querySelector('.elements__delete-button');
+  const deleteButton = addedCard.querySelector('.elements__delete-button');
   deleteButton.addEventListener('click', function() {
     addedCard.remove();
   });
@@ -143,7 +143,7 @@ initialCards.forEach(card => {
 
 //Функция добавления карточек, с элементом удаления
 function addCards (object) {
-  const cardTemplate = cardsContainer.querySelector('.card-template').content;
+  let cardTemplate = cardsContainer.querySelector('.card-template').content;
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   cardElement.querySelector('.elements__image').src = object.link;
   cardElement.querySelector('.elements__element-title').textContent = object.name;
@@ -176,17 +176,10 @@ formCard.addEventListener('submit', formSubmitCard);
 
 
 //Модалка открытия карточки
-let openCardPopup = document.querySelector('#open-card');
-let openCardToggle = openCardPopup.querySelector('#open-card-toggle');
-let openCardImage = openCardPopup.querySelector('.popup__image');
-let openCardTitle = openCardPopup.querySelector('#open-card-title');
-
-
-//Пересчет кол-ва карточек
-function countCards() {
-  let ImagesCards = document.querySelectorAll('.elements__image');
-  console.log(ImagesCards.length);
-}
+const openCardPopup = document.querySelector('#open-card');
+const openCardToggle = openCardPopup.querySelector('#open-card-toggle');
+const openCardImage = openCardPopup.querySelector('.popup__image');
+const openCardTitle = openCardPopup.querySelector('#open-card-title');
 
 
 //Открытие карточки
@@ -211,7 +204,7 @@ openCardToggle.addEventListener('click', function() {
 });
 
 
-//Плавное отображение закрытия/открытия картинки
+//Плавное отображение закрытия/открытия попапа-картинки
 function smoothImageModal() {
   if (openCardPopup.classList.contains('popup_opened') ) {
     openCardPopup.style.transition = 'opacity 0.7s, visibility 0s 0.7s';
