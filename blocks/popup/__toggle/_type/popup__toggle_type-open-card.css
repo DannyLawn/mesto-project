@@ -3,3 +3,11 @@
   top: 10px;
   right: -40px;
 }
+
+@media screen and (max-width: 991px) {
+  .popup__toggle_type-open-card {
+    position: static;
+    margin-bottom: 16px;
+    align-self: flex-end;
+  }
+}
