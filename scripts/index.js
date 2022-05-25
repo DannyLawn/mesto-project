@@ -157,6 +157,7 @@ function addCards (object) {
   });
   
   cardsContainer.prepend(cardElement);
+  openCards();
   popupCard.classList.remove('popup_opened');
 }
 
@@ -174,7 +175,48 @@ function formSubmitCard (evt) {
 formCard.addEventListener('submit', formSubmitCard);
 
 
-//Реализвация открытия карточки
+//Модалка открытия карточки
+let openCardPopup = document.querySelector('#open-card');
+let openCardToggle = openCardPopup.querySelector('#open-card-toggle');
+let openCardImage = openCardPopup.querySelector('.popup__image');
+let openCardTitle = openCardPopup.querySelector('#open-card-title');
 
 
+//Пересчет кол-ва карточек
+function countCards() {
+  let ImagesCards = document.querySelectorAll('.elements__image');
+  console.log(ImagesCards.length);
+}
+
+
+//Открытие карточки
+function openCards() {
+  let ImagesCards = document.querySelectorAll('.elements__image');
+  ImagesCards.forEach(image => {
+    image.addEventListener('click', function(evt) {
+      openCardImage.src = evt.target.src;
+      openCardTitle.textContent = evt.target.parentElement.querySelector('.elements__element-title').textContent;
+      smoothImageModal();
+      openCardPopup.classList.add('popup_opened');
+    });
+  }); 
+}
+openCards();
+
+
+//Закрытие карточки
+openCardToggle.addEventListener('click', function() {
+  smoothImageModal();
+  openCardPopup.classList.remove('popup_opened');
+});
+
+
+//Плавное отображение закрытия/открытия картинки
+function smoothImageModal() {
+  if (openCardPopup.classList.contains('popup_opened') ) {
+    openCardPopup.style.transition = 'opacity 0.7s, visibility 0s 0.7s';
+  } else {
+    openCardPopup.style.transition = 'visibility 0s, opacity 0.7s';
+  }
+}
 
