@@ -8,25 +8,22 @@ const addCardButton = profile.querySelector('.profile__add-button');
 
 //Попап профиля
 const popupProfile = document.querySelector('#profile-popup');
-const closeProfilePopup = popupProfile.querySelector('#profile-toggle');
-const formProfile = document.querySelector('#edit-profile-form');
-const nameInput =  formProfile.querySelector('#inpit-name');
-const activityInput = popupProfile.querySelector('#input-activity');
+const formProfile = document.forms.editProfile;
+const nameInput =  formProfile.elements.profileName;
+const activityInput = formProfile.elements.profileAtivity;
 
 
 //Попап добавления карточек
 const popupCard = document.querySelector('#add-card-popup');
-const formCard = popupCard.querySelector('#add-card-form');
-const inputCardName = popupCard.querySelector('#inpit-card-name');
-const inputCardImage = popupCard.querySelector('#input-image-link');
-const addCardToggle = popupCard.querySelector('#add-card-toggle');
+const formCard = document.forms.addСardForm;
+const inputCardName = formCard.elements.cardName;
+const inputCardImage = formCard.elements.cardImageLink;
 
 
  //Попап открытой карточки
 const openCardPopup = document.querySelector('#open-card');
-const openCardToggle = openCardPopup.querySelector('#open-card-toggle');
 const openCardImage = openCardPopup.querySelector('.popup__image');
-const openCardTitle = openCardPopup.querySelector('#open-card-title');
+const openCardTitle = openCardPopup.querySelector('.popup__title_type-open-card');
 
 
 //Контейнер карточек
@@ -131,14 +128,6 @@ function openEditProfile() {
 editProfile.addEventListener('click', openEditProfile);
 
 
-// Закрыть редактирование профиля
-function closeEditProfile() {
-  closePopup(popupProfile);
-}
-
-closeProfilePopup.addEventListener('click', closeEditProfile);
-
-
 //Открыть добавление карточки
 function openAddCard() {
   formCard.reset();
@@ -148,17 +137,36 @@ function openAddCard() {
 addCardButton.addEventListener('click', openAddCard);
 
 
-//Закрыть добавление карточки
-function closeAddCard() {
-  closePopup(popupCard);
+// Закрыть попапы кнопкой Х
+document.querySelectorAll('.popup__toggle').forEach(button => {
+  button.addEventListener('click', closeOnX);
+});
+
+function closeOnX(evt) {
+  closePopup(evt.target.closest('.popup'));
 }
 
-addCardToggle.addEventListener('click', closeAddCard);
 
+// Закрыть попапы клавишей ESC  
+document.addEventListener('keydown', closeOnEsc);
 
-//Закрыть открытую карточку
-function closeOpenCard() {
-  closePopup(openCardPopup);
+function closeOnEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup !== null) {
+    closePopup(openedPopup);
+    }
+  }
 }
 
-openCardToggle.addEventListener('click', closeOpenCard);
+
+// Закрыть попапы кликом на оверлей
+document.querySelectorAll('.popup').forEach(popup => {
+  popup.addEventListener('mousedown', closeOnOverlay);
+});
+
+function closeOnOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+}
