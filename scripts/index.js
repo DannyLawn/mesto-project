@@ -33,11 +33,38 @@ const cardsContainer = document.querySelector('.elements');
 //Обработчики попапов
 function openPopup (popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeOnEsc);
+  popup.addEventListener('mousedown', closeOnOverlay);
+  popup.querySelector('.popup__toggle').addEventListener('click', closeOnX);
 }  
 
 function closePopup (popup) {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeOnEsc);
+  popup.removeEventListener('mousedown', closeOnOverlay);
+  popup.querySelector('.popup__toggle').removeEventListener('click', closeOnX);
 }  
+
+
+// Закрыть попапы кнопкой Х
+function closeOnX(evt) {
+  closePopup(evt.target.closest('.popup'));
+}
+
+
+// Закрыть попап клавишей ESC  
+function closeOnEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+
+// Закрыть попап кликом на оверлей
+function closeOnOverlay(evt) {
+    closePopup(evt.target);
+}
 
 
 //Сохранение обновлений профиля
@@ -135,38 +162,3 @@ function openAddCard() {
 }
 
 addCardButton.addEventListener('click', openAddCard);
-
-
-// Закрыть попапы кнопкой Х
-document.querySelectorAll('.popup__toggle').forEach(button => {
-  button.addEventListener('click', closeOnX);
-});
-
-function closeOnX(evt) {
-  closePopup(evt.target.closest('.popup'));
-}
-
-
-// Закрыть попапы клавишей ESC  
-document.addEventListener('keydown', closeOnEsc);
-
-function closeOnEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup !== null) {
-    closePopup(openedPopup);
-    }
-  }
-}
-
-
-// Закрыть попапы кликом на оверлей
-document.querySelectorAll('.popup').forEach(popup => {
-  popup.addEventListener('mousedown', closeOnOverlay);
-});
-
-function closeOnOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target);
-  }
-}
