@@ -20,7 +20,11 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__title/type/popup__title_type-open-card.css);
 @import url(../blocks/popup/__input-text/popup__input-text.css);
+@import url(../blocks/popup/__input-text/_type/popup__input-text_type-error.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 @import url(../blocks/popup/__input-submit/popup__input-submit.css);
+@import url(../blocks/popup/__input-submit/_inactive/popup__input-submit_inactive.css);
 @import url(../blocks/popup/__image/popup__image.css);
 
 @import url(../blocks/profile/profile.css);

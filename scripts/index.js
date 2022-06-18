@@ -30,45 +30,55 @@ const openCardTitle = openCardPopup.querySelector('.popup__title_type-open-card'
 const cardsContainer = document.querySelector('.elements');
 
 
-//Обработчики попапов
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
+//Обработчики открытия/закрытия попапов
+function openPopup(popup) {
+  const formElement = popup.querySelector('.popup__edit-form');
+  if (formElement !== null) {
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input-text'));
+    const buttonElement = formElement.querySelector('.popup__input-submit');
+    inputList.forEach((inputElement) => {
+      hideInputError(formElement, inputElement);
+    });
+    toggleButtonState(inputList, buttonElement);
+  }
   document.addEventListener('keydown', closeOnEsc);
   popup.addEventListener('mousedown', closeOnOverlay);
   popup.querySelector('.popup__toggle').addEventListener('click', closeOnX);
+  popup.classList.add('popup_opened');
 }  
 
-function closePopup (popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeOnEsc);
-  popup.removeEventListener('mousedown', closeOnOverlay);
-  popup.querySelector('.popup__toggle').removeEventListener('click', closeOnX);
 }  
 
 
-// Закрыть попапы кнопкой Х
+// Закрытие кнопкой Х
 function closeOnX(evt) {
-  closePopup(evt.target.closest('.popup'));
+  const popup = evt.target.closest('.popup');
+  closePopup(popup);
+  popup.querySelector('.popup__toggle').removeEventListener('click', closeOnX);
 }
 
 
-// Закрыть попап клавишей ESC  
+// Закрытие клавишей ESC  
 function closeOnEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
+    document.removeEventListener('keydown', closeOnEsc);
   }
 }
 
 
-// Закрыть попап кликом на оверлей
+// Закрытие кликом на оверлей
 function closeOnOverlay(evt) {
-    closePopup(evt.target);
+  closePopup(evt.target);
+  evt.target.removeEventListener('mousedown', closeOnOverlay);
 }
 
 
 //Сохранение обновлений профиля
-function handleProfileFormSubmit (evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault(); 
   
   nameProfile.textContent = nameInput.value;
@@ -80,7 +90,7 @@ formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 
 //Создание карточки
-function createCard (object) {
+function createCard(object) {
   const cardTemplate = cardsContainer.querySelector('.card-template').content;
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   cardElement.querySelector('.elements__image').src = object.link;
@@ -120,7 +130,7 @@ function handleCardClick(image, name) {
 
 
 //Добавление карточки пользователем
-function handleAddCardFormSubmit (evt) {
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault(); 
   
   const addedUserCard = {};
@@ -140,12 +150,12 @@ initialCards.forEach(card => {
 
 
 //Добавление карточки в контейнер
-function addCard (newCard) {
+function addCard(newCard) {
   cardsContainer.prepend(newCard);
 }
 
 
-// Открыть редактирование профиля
+//Открыть редактирование профиля
 function openEditProfile() {
   nameInput.value = nameProfile.textContent;
   activityInput.value = activityProfile.textContent;
@@ -162,3 +172,70 @@ function openAddCard() {
 }
 
 addCardButton.addEventListener('click', openAddCard);
+
+
+// - - - - Валидация форм - - - - 
+
+//Показать сообщение ошибки инпута
+function showInputError(formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__input-text_type-error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__input-error_active');
+}
+
+//Скрыть сообщение ошибки инпута
+function hideInputError(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input-text_type-error');
+  errorElement.textContent = '';
+  errorElement.classList.remove('popup__input-error_active');
+}
+
+//Проверка верности инпута
+function checkInputValidity(formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+}
+
+//Проверка, есть ли хотя бы один неверный инпут
+function hasInvalidInput(inputList) {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+//Изменение состояния кнопки submit
+function toggleButtonState(inputList, buttonElement) {
+  if(hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__input-submit_inactive');
+  } else {
+    buttonElement.classList.remove('popup__input-submit_inactive');
+  }
+}
+
+//Добавление обработчиков ввода инпутам
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input-text'));
+  const buttonElement = formElement.querySelector('.popup__input-submit');
+  toggleButtonState(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function() {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+}
+
+//Включение проверки форм
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__edit-form'));
+  formList.forEach((formElement) => {
+    setEventListeners(formElement);
+  });
+}
+
+enableValidation();

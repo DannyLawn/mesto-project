@@ -8,13 +8,8 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 30px;
   padding: 0 0 7px 0;
   outline: none; /* в макете не нашел значений для элемента */
-}
-
-.popup__input-text:last-child {
-  margin-bottom: 0;
 }
 
 .popup__input-text::placeholder {
