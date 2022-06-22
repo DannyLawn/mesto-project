@@ -1,7 +1,7 @@
 .popup__toggle-container {
-  width: calc(430px + (40px * 2));
+  width: 510px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 576px) {

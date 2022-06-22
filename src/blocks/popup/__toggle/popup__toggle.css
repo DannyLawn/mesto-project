@@ -1,7 +1,7 @@
 .popup__toggle {
   width: 32px;
   height: 32px;
-  background: url(../../../images/Close\ Icon.svg) no-repeat center / contain;
+  background: url(../../../vendor/images/close-icon.svg) no-repeat center / contain;
   padding: 0;
   border: none;
   transition: opacity .14s ease-in;

@@ -13,7 +13,7 @@
 
 .profile__edit-button::after {
   content: "";
-  background: url(../../../images/Edit\ Button.svg) no-repeat center / contain;
+  background: url(../../../vendor/images/edit-button.svg) no-repeat center / contain;
   width: 10px;
   height: 10px;
   position: absolute;

@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./images/favicon.ico">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место Россия</title>
 </head>
 <body class="page">
   <div class="page__container">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Белая надпись Место, с верхним индексом Россия.">
+      <img class="header__logo" src="<%=require('./vendor/images/logo.svg')%>" alt="Белая надпись Место, с верхним индексом Россия.">
     </header>
 
     <main class="content">
@@ -58,14 +56,14 @@
       <section class="popup popup_type-open-card" id="open-card">
         <div class="popup__open-card-container">
           <button aria-label="Close" class="popup__toggle popup__toggle_type-open-card" type="button"></button>
-          <img class="popup__image" src="./images/places/Karachevsk.jpg" alt="">
-          <h2 class="popup__title popup__title_type-open-card">Какая-то там</h2>
+          <img class="popup__image" src="" alt="">
+          <h2 class="popup__title popup__title_type-open-card"></h2>
         </div> 
       </section>
       
 
       <section class="profile">
-        <img class="profile__avatar" src="./images/Avatar.jpg" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
+        <img class="profile__avatar" src="<%=require('./vendor/images/Avatar.jpg')%>" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
         <div class="profile__info">
           <div class="profile__name-module">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -95,6 +93,5 @@
       <p class="footer__signature">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>  
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

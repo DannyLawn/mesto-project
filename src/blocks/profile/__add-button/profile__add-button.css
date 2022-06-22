@@ -16,7 +16,7 @@
 .profile__add-button::before {
   content: "";
   box-sizing: inherit;
-  background: url(../../../images/Add\ Button.svg) no-repeat center / contain;
+  background: url(../../../vendor/images/add-button.svg) no-repeat center / contain;
   width: 22px;
   height: 22px;
   position: absolute;

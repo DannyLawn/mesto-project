@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 //Импорт глобальных переменных
 import { editProfile, addCardButton, formProfile, formCard, validationObject } from './data.js';
  
