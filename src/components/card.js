@@ -33,37 +33,34 @@ const initialCards = [
   }
 ];
 
-
 //Создание карточки
 function createCard(object) {
   const cardTemplate = cardsContainer.querySelector('.card-template').content;
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
-  cardElement.querySelector('.elements__image').src = object.link;
-  cardElement.querySelector('.elements__image').alt = object.name;
+  const cardImage =  cardElement.querySelector('.elements__image');
+  cardImage.src = object.link;
+  cardImage.alt = object.name;
   cardElement.querySelector('.elements__element-title').textContent = object.name;
 
-  cardElement.querySelector('.elements__like-button').addEventListener('click', enableLike);
+  cardElement.querySelector('.elements__like-button').addEventListener('click', toggleLike);
 
   cardElement.querySelector('.elements__delete-button').addEventListener('click', deleteCard);
 
-  cardElement.querySelector('.elements__image').addEventListener('click', () => handleCardClick(object.link, object.name));
+  cardImage.addEventListener('click', () => handleCardClick(object.link, object.name));
 
   return cardElement;
 }
 
-
-//Активатор лайка
-function enableLike(evt) {
+//Переключатель лайка
+function toggleLike(evt) {
   evt.target.classList.toggle('elements__like-button_enabled');
 }
-
 
 //Удаление карточки
 function deleteCard(evt) {
   const item = evt.target.closest('.elements__element');
   item.remove();
 }
-
 
 //Открытие карточки
 function handleCardClick(image, name) {
@@ -80,4 +77,4 @@ function addCard(newCard) {
 
 
 
-export { initialCards, createCard, enableLike, deleteCard, handleCardClick, addCard };
+export { initialCards, createCard, toggleLike, deleteCard, handleCardClick, addCard };

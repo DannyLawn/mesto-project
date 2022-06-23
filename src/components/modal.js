@@ -2,7 +2,7 @@
 import { nameProfile, activityProfile, popupProfile, nameInput, activityInput, popupCard, formCard, inputCardName, inputCardImage } from './data.js';
 
 //Импорт утилитарных функций
-import { openPopup, closePopup } from './utils.js';
+import { openPopup, closePopup, resetValidation } from './utils.js';
 
 //Импорт действий с карточками
 import { createCard, addCard } from './card.js';
@@ -13,6 +13,7 @@ import { createCard, addCard } from './card.js';
 function openEditProfile() {
   nameInput.value = nameProfile.textContent;
   activityInput.value = activityProfile.textContent;
+  resetValidation(popupProfile);
   openPopup(popupProfile);
 }
 
@@ -20,6 +21,7 @@ function openEditProfile() {
 //Открыть добавление карточки
 function openAddCard() {
   formCard.reset();
+  resetValidation(popupCard);
   openPopup(popupCard);
 }
 
