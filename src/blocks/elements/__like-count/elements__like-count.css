@@ -1,0 +1,14 @@
+.elements__like-count {
+  align-self: flex-start;
+  margin-top: 3px;
+  display: none;
+  min-width: 22px;
+  max-width: 22px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

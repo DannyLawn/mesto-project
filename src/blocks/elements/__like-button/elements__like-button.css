@@ -1,4 +1,5 @@
 .elements__like-button {
+  align-self: center;
   display: block;
   border: none;
   padding: 0;

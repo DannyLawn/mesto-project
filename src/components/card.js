@@ -1,8 +1,8 @@
 //Импорт глобальных переменных
-import { openCardPopup, openCardImage, openCardTitle, cardsContainer } from './data.js';
+import { openCardPopup, openCardImage, openCardTitle, cardsContainer, deleteCardPopup, formDeleteCard  } from './data.js';
 
 //Импорт утилитарных функций
-import { openPopup } from './utils.js';
+import { closePopup, openPopup } from './utils.js';
 
 
 
@@ -44,7 +44,7 @@ function createCard(object) {
 
   cardElement.querySelector('.elements__like-button').addEventListener('click', toggleLike);
 
-  cardElement.querySelector('.elements__delete-button').addEventListener('click', deleteCard);
+  cardElement.querySelector('.elements__delete-button').addEventListener('click', openDeleteCard);
 
   cardImage.addEventListener('click', () => handleCardClick(object.link, object.name));
 
@@ -56,10 +56,24 @@ function toggleLike(evt) {
   evt.target.classList.toggle('elements__like-button_enabled');
 }
 
-//Удаление карточки
-function deleteCard(evt) {
+
+//Открыть удаление карточки
+function openDeleteCard(evt) {
   const item = evt.target.closest('.elements__element');
-  item.remove();
+  openPopup(deleteCardPopup);
+
+  formDeleteCard.addEventListener('submit', deleteCard(item));
+}
+
+
+//Удаление карточки
+function deleteCard(item) {
+  return function(evt) {
+    evt.preventDefault();
+    
+    item.remove();
+    closePopup(deleteCardPopup);
+  }
 }
 
 //Открытие карточки

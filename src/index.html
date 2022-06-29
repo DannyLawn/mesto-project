@@ -27,7 +27,6 @@
               <input type="text" class="popup__input-text" id="profile-activity-input" placeholder="Деятельность" name="profileAtivity" minlength="2" maxlength="200" required>
               <span class="popup__input-error profile-activity-input-error"></span>
             </div>
-            
             <input type="submit" class="popup__input-submit" name="save-profile" value="Сохранить">
           </form>
         </div>
@@ -46,12 +45,10 @@
             <input type="url" class="popup__input-text" id="card-link-input" placeholder="Ссылка на картинку" name="cardImageLink" required>
             <span class="popup__input-error card-link-input-error"></span>
           </div>
-      
           <input type="submit" class="popup__input-submit" name="save-card" value="Создать">
         </form>
       </div>
       </section>
-
 
       <section class="popup popup_type-open-card" id="open-card">
         <div class="popup__open-card-container">
@@ -60,10 +57,39 @@
           <h2 class="popup__title popup__title_type-open-card"></h2>
         </div> 
       </section>
-      
 
+      <section class="popup popup_type-delete-card" id="delete-card-popup">
+        <div class="popup__toggle-container">
+          <button aria-label="Close" class="popup__toggle" type="button"></button>
+      </div>
+      <div class="popup__main-container">
+        <form class="popup__form" name="deleteСardForm">
+          <h2 class="popup__title">Вы уверены?</h2>      
+          <input type="submit" class="popup__input-submit" name="save-card" value="Да">
+        </form>
+      </div>
+      </section>
+
+      <section class="popup" id="edit-avatar-popup">
+        <div class="popup__toggle-container">
+          <button aria-label="Close" class="popup__toggle" type="button"></button>
+      </div>
+      <div class="popup__main-container">
+        <form class="popup__form" name="editAvatarForm" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <div class="popup__input-container">
+            <input type="url" class="popup__input-text" id="avatar-link-input" placeholder="Ссылка на картинку" name="avatarImageLink" required>
+            <span class="popup__input-error avatar-link-input-error"></span>
+          </div>
+          <input type="submit" class="popup__input-submit" name="save-card" value="Сохранить">
+        </form>
+      </div>
+      </section>
+      
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./vendor/images/Avatar.jpg')%>" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./vendor/images/Avatar.jpg')%>" alt="Улыбающийся Жак-Ив Кусто на фоне моря, в красной шапочке.">
+        </div> 
         <div class="profile__info">
           <div class="profile__name-module">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -80,7 +106,10 @@
             <img class="elements__image" src="" alt="">
             <div class="elements__info-unit">
               <h2 class="elements__element-title"></h2>
-              <button aria-label="Like" class="elements__like-button" type="button"></button>
+              <div class="elements__like-container">
+                <button aria-label="Like" class="elements__like-button" type="button"></button>
+                <span class="elements__like-count"></span>
+              </div>  
             </div>
             <button aria-label="Delete" class="elements__delete-button" type="button"></button>
           </article>

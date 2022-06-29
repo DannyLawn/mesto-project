@@ -1,5 +1,5 @@
 //Импорт глобальных переменных
-import { nameProfile, activityProfile, popupProfile, nameInput, activityInput, popupCard, formCard, inputCardName, inputCardImage } from './data.js';
+import { nameProfile, activityProfile, popupProfile, nameInput, activityInput, popupCard, formCard, inputCardName, inputCardImage, profileAvatar, editAvatarPopup, editAvatarForm, inputAvatarLink } from './data.js';
 
 //Импорт утилитарных функций
 import { openPopup, closePopup, resetValidation } from './utils.js';
@@ -17,6 +17,21 @@ function openEditProfile() {
   openPopup(popupProfile);
 }
 
+
+//Открыть редактирование аватарки
+function openEditAvatar() {
+  editAvatarForm.reset();
+  resetValidation(editAvatarPopup);
+  openPopup(editAvatarPopup);
+}
+
+//Сохранение измененной аватарки
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+
+  profileAvatar.src = inputAvatarLink.value;
+  closePopup(editAvatarPopup);
+}
 
 //Открыть добавление карточки
 function openAddCard() {
@@ -46,8 +61,8 @@ function handleProfileFormSubmit(evt) {
   activityProfile.textContent = activityInput.value;
   closePopup(popupProfile);
 }
- 
 
 
-export { openEditProfile, openAddCard, handleAddCardFormSubmit, handleProfileFormSubmit };
+
+export { openEditProfile, openAddCard, handleAddCardFormSubmit, handleProfileFormSubmit, openEditAvatar, handleAvatarFormSubmit };
 
