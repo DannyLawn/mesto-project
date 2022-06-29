@@ -4,7 +4,7 @@
   overflow: hidden;
   border-radius: 50%;
   object-fit: cover;
-  transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in-out;
 }
 
 @media screen and (max-width: 992px)  {
