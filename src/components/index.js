@@ -17,53 +17,54 @@ import { getAllCards, uploadingUserInfo } from './api.js';
 
 
 
-// Загрузка профиля с сервера
-//     uploadingUserInfo();
-//     .then((dataFromServer) => {
-//     nameProfile.textContent = dataFromServer.name;
-//     activityProfile.textContent = dataFromServer.about;
-//     profileAvatar.src = dataFromServer.avatar;
-//   })
-//   .catch(err => {
-//     console.log(`При загрузке профиля: ${err.status}`)
-//   });
+//Загрузка данных пользователя
+function updateUser(data) {
+  nameProfile.textContent = data.name;
+  activityProfile.textContent = data.about;
+  profileAvatar.src = data.avatar;
+}
 
 
-//Загрузка карточек с сервера
-  //    getAllCards();
-  //   .then((initialCards) => {
-  //   initialCards.reverse().forEach(card => {
-  //     addCard(createCard(card));
-  //   });
-  // })
-  // .catch(err => {
-  //   console.log(`При загрузке карточек: ${err.status}`)
-  // });
+//Загрузка карточек 
+function updateCards(data) {
+  data[1].reverse().forEach(card => {
+    const cardElement = createCard(card);
+    const likesCount = cardElement.querySelector('.elements__like-count');
+    const deleteButton = cardElement.querySelector('.elements__delete-button');
+    const likeButton =  cardElement.querySelector('.elements__like-button');
 
-  //Загрузка данных пользователя
-  function updateUser(data) {
-    nameProfile.textContent = data.name;
-    activityProfile.textContent = data.about;
-    profileAvatar.src = data.avatar;
-  }
+    //Условие отображение кол-ва лайков
+    if (card.likes.length === 0) {
+      likesCount.style.display = "none";
+    } else {
+      likesCount.textContent = card.likes.length;
+    }
 
-  
-
-  //Загрузка карточек 
-  function updateCards(data) {
-    data[1].reverse().forEach(card => {
-      addCard(createCard(card));
-    });
-  }
-
-  //Принимаем данные запроса о пользователе и карточках 
-  Promise.all([uploadingUserInfo(), getAllCards()])
-    .then(values => {
-      updateUser(values[0]);
-      updateCards(values);
+    //Условие отображения иконок удаления при загрузке
+    if (card.owner._id !== data[0]._id) {
+      deleteButton.style.display = "none";
+    }
+        
+    //Условие активности лайка при загрузке
+    card.likes.forEach((profile) => {
+      if (profile._id === data[0]._id) {
+        likeButton.classList.add('elements__like-button_enabled');
+      }
     })
-    .catch(err => {
-      console.log(`При загрузке данных: ${err.status}`)
+        
+    addCard(cardElement);
+  });
+}
+
+
+//Принимаем данные запроса о пользователе и карточках 
+Promise.all([uploadingUserInfo(), getAllCards()])
+  .then(values => {
+    updateUser(values[0]);
+    updateCards(values);
+  })
+  .catch(err => {
+    console.log(`При загрузке данных: ${err.status}`)
   });
 
 
@@ -87,26 +88,3 @@ editAvatarForm.addEventListener('submit', handleAvatarFormSubmit);
 
 //Включение валидации
 enableValidation(validationObject);
-
-
-
-
-  // //Условие отображение кол-ва лайков
-  // if (card.likes.length === 0) {
-  //   likesCount.style.display = "none";
-  // } else {
-  //   likesCount.textContent = card.likes.length;
-  // }
-
-  // //Условие отображения иконок удаления
-  // if (cardOwnerId !== profileId) {
-  //   deleteButton.style.display = "none";
-  // }
-
-  // Условие активности лайка
-  // const result = cardLikes.some(function (profile) {
-  //   return profile === profileInfo;
-  // });
-  // if (cardLikes.some(profileInfo)) {
-  //   likeButton.classList.add('elements__like-button_enabled');
-  // }

@@ -73,7 +73,15 @@ function likeCard(cardId) {
   return fetch(`${config.url}/cards/likes/${cardId}`, {
     method: 'PUT',
     headers: config.headers
-    // body: JSON.stringify(data)
+  })
+    .then(onResponce)
+}
+
+//Убрать лайк
+function offLikeCard(cardId) {
+  return fetch(`${config.url}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: config.headers
   })
     .then(onResponce)
 }
@@ -88,4 +96,4 @@ function likeCard(cardId) {
 
 
 
-export { getAllCards, addNewCard, removeCard, editProfile, uploadingUserInfo, editAvatarProfile, likeCard };
+export { getAllCards, addNewCard, removeCard, editProfile, uploadingUserInfo, editAvatarProfile, likeCard, offLikeCard };

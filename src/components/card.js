@@ -1,11 +1,11 @@
 //Импорт данных
-import { openCardPopup, openCardImage, openCardTitle, cardsContainer, deleteCardPopup, formDeleteCard  } from './data.js';
+import { openCardPopup, openCardImage, openCardTitle, cardsContainer, deleteCardPopup } from './data.js';
 
 //Импорт утилитарных функций
 import { closePopup, openPopup } from './utils.js';
 
 //Импорт api
-import { removeCard, likeCard } from './api.js';
+import { removeCard, likeCard, offLikeCard } from './api.js';
 
 
 
@@ -16,21 +16,39 @@ function createCard(card) {
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   const cardImage =  cardElement.querySelector('.elements__image');
   const likesCount = cardElement.querySelector('.elements__like-count');
+
   cardImage.src = card.link;
   cardImage.alt = card.name;
 
-  if (card.likes.length === 0) {
-    likesCount.style.display = "none";
-  } else {
-    likesCount.textContent = card.likes.length;
-  }
-
   cardElement.querySelector('.elements__element-title').textContent = card.name;
-
-  cardElement.querySelector('.elements__like-button').addEventListener('click', toggleLike);
-
+  cardElement.querySelector('.elements__like-button').addEventListener('click', function (evt) {
+    if (!evt.target.classList.contains("elements__like-button_enabled")) {
+      likeCard(cardId)
+        .then(data => {
+          evt.target.classList.add("elements__like-button_enabled");
+          likesCount.textContent = data.likes.length;
+          if (data.likes.length === 0) {
+            likesCount.style.display = "none";
+          } else {
+            likesCount.style.display = "block";
+          }
+        })
+        .catch(err => console.log(err.status))
+    } else {
+      offLikeCard(cardId)
+      .then(data => {
+        evt.target.classList.remove("elements__like-button_enabled");
+        likesCount.textContent = data.likes.length;
+        if (data.likes.length === 0) {
+          likesCount.style.display = "none";
+        } else {
+          likesCount.style.display = "block";
+        }
+      })
+      .catch(err => console.log(err.status))
+    }  
+  });
   cardElement.querySelector('.elements__delete-button').addEventListener('click', () => handleDeleteCard(cardElement, cardId));
-
   cardImage.addEventListener('click', () => handleCardClick(card.link, card.name));
 
   return cardElement;
@@ -44,7 +62,7 @@ const deleteCard = (card) => {
 };
 
 
-//Функция удаления, вызываемая из createCard
+//Функция удаления 
 function handleDeleteCard(cardElement, cardId) {
   const handleRemoveCardSubmit = (evt) => {
     evt.preventDefault();
@@ -57,22 +75,14 @@ function handleDeleteCard(cardElement, cardId) {
       .catch(err => {
         console.log(`При удалении карточки: ${err.status}`)
       });
-  deleteCardPopup.removeEventListener('submit', handleRemoveCardSubmit);
-  };
+    deleteCardPopup.removeEventListener('submit', handleRemoveCardSubmit);
+  }
   deleteCardPopup.addEventListener('submit', handleRemoveCardSubmit);
 
   openPopup(deleteCardPopup);
 }
 
-
-
-//Переключатель лайка
-function toggleLike(evt) {
-  const likeButton = evt.target;
-  likeButton.classList.toggle('elements__like-button_enabled');
-}
-
-
+ 
 //Открытие карточки
 function handleCardClick(image, name) {
   openCardImage.src = image;
@@ -89,4 +99,4 @@ function addCard(newCard) {
 
 
 
-export { createCard, toggleLike, handleCardClick, addCard };
+export { createCard, handleCardClick, addCard };

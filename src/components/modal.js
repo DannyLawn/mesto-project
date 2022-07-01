@@ -40,7 +40,7 @@ function handleAvatarFormSubmit(evt) {
     .then((data) => {
       profileAvatar.src = data.avatar;
       closePopup(editAvatarPopup);
-      setTimeout(function(){ 
+      setTimeout(function() { 
         submit.value = value;
       }, 1000);
     })
@@ -72,7 +72,7 @@ function handleAddCardFormSubmit(evt) {
     .then((dataFromServer) => {
       addCard(createCard(dataFromServer));
       closePopup(popupCard);
-      setTimeout(function(){ 
+      setTimeout(function() { 
         submit.value = value;
       }, 1000);
     })
