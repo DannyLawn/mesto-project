@@ -1,3 +1,6 @@
+//Импорт api
+import { uploadingUserInfo } from './api.js';
+
 //Профиль
 const profile = document.querySelector('.profile');
 const editProfile = profile.querySelector('.profile__edit-button');
@@ -6,6 +9,7 @@ const activityProfile = profile.querySelector('.profile__activity');
 const addCardButton = profile.querySelector('.profile__add-button');
 const avatarContainer = profile.querySelector('.profile__avatar-container');
 const profileAvatar = profile.querySelector('.profile__avatar');
+
 
 //Попап профиля
 const popupProfile = document.querySelector('#profile-popup');

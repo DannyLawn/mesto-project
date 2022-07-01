@@ -29,6 +29,23 @@ popups.forEach((popup) => {
   });
 });
 
+//Показывать процесс загрузки(на кнопках submit)
+function renderLoading(isLoading, submit) {
+  if(isLoading) {
+    submit.value = "Сохранение...";
+  } else { return; }
+}
+
+// function renderLoading(isLoading) {
+//   if(isLoading) {
+//     spinner.classList.add('spinner_visible');
+//     content.classList.add('content_hidden');
+//   } else {
+//     spinner.classList.remove('spinner_visible');
+//     content.classList.remove('content_hidden');
+//   }
+// }
+
 // Закрытие на ESC  
 function closeOnEsc(evt) {
   if (evt.key === "Escape") {
@@ -50,4 +67,4 @@ function resetValidation(popup) {
 
 
 
-export { openPopup, closePopup, closeOnEsc, resetValidation };
+export { openPopup, closePopup, closeOnEsc, resetValidation, renderLoading };
