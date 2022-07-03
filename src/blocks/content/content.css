@@ -1,6 +1,7 @@
 .content {
   width: 100%;
   box-sizing: inherit;
+  min-height: 100vh;
 }
 
 @media screen and (max-width: 768px)  {
