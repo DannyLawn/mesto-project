@@ -31,11 +31,19 @@ popups.forEach((popup) => {
 });
 
 
-//Показывать процесс загрузки(на кнопках submit)
-function renderLoading(isLoading, submit) {
+//Отображать процесс загрузки на кнопках submit
+function renderLoadingPopup(popup, isLoading) {
+  const submit = popup.querySelector('.popup__input-submit');
+  const value = submit.value;
+
   if(isLoading) {
     submit.value = "Сохранение...";
-  } else { return; }
+  } else { 
+    return;
+  }
+  setTimeout(function() { 
+    submit.value = value;
+  }, 1000);
 }
 
 
@@ -61,5 +69,5 @@ function resetValidation(popup) {
 
 
 
-export { openPopup, closePopup, closeOnEsc, resetValidation, renderLoading };
+export { openPopup, closePopup, closeOnEsc, resetValidation, renderLoadingPopup };
 

@@ -3,7 +3,7 @@ import { cardsContainer } from './data.js';
 
 
 //Импорт функций основного скрипта
-import { addCard, handleCardClick, handleDeleteCard, toggleLike } from './index.js';
+import { handleCardClick, handleDeleteCard, toggleLike } from './index.js';
 
 
 
@@ -60,4 +60,4 @@ const deleteCard = (card) => {
 
 
 
-export { createCard, handleCardClick, addCard, deleteCard, cardElementsOption };
+export { createCard, deleteCard, cardElementsOption };

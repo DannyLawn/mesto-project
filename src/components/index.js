@@ -7,7 +7,7 @@ import { inputAvatarLink, deleteCardPopup, openCardImage, openCardTitle, openCar
 import { createCard, deleteCard, cardElementsOption } from './card.js';
 
 //Импорт общих функций модальных окон
-import { openPopup, closePopup, resetValidation, renderLoading } from './modal.js';
+import { openPopup, closePopup, resetValidation, renderLoadingPopup } from './modal.js';
 
 //Импорт валидации форм
 import { enableValidation } from './validate.js';
@@ -70,23 +70,19 @@ function openEditAvatar() {
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
 
-  const submit = editAvatarPopup.querySelector('.popup__input-submit');
-  const value = submit.value;
-  renderLoading(true, submit);
+
+  renderLoadingPopup(editAvatarPopup, true);
 
   editAvatarProfile({avatar: inputAvatarLink.value})
     .then((data) => {
       profileAvatar.src = data.avatar;
       closePopup(editAvatarPopup);
-      setTimeout(function() { 
-        submit.value = value;
-      }, 1000);
     })
     .catch(err => {
       console.log(`При обновлении аватарки: ${err.status}`)
     })
     .finally(() => {
-      renderLoading(false, submit);
+      renderLoadingPopup(editAvatarPopup, false);
     });
 }
 
@@ -103,23 +99,19 @@ function openAddCard() {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault(); 
 
-  const submit = popupCard.querySelector('.popup__input-submit');
-  const value = submit.value;
-  renderLoading(true, submit);
+
+  renderLoadingPopup(popupCard, true);
 
   addNewCard({name: inputCardName.value, link: inputCardImage.value})
     .then((dataFromServer) => {
       addCard(createCard(dataFromServer));
       closePopup(popupCard);
-      setTimeout(function() { 
-        submit.value = value;
-      }, 1000);
     })
     .catch(err => {
       console.log(`При добавлении карточки: ${err.status}`)
     })
     .finally(() => {
-      renderLoading(false, submit);
+      renderLoadingPopup(popupCard, false);
     });
  
 }
@@ -129,24 +121,19 @@ function handleAddCardFormSubmit(evt) {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); 
 
-  const submit = popupProfile.querySelector('.popup__input-submit');
-  const value = submit.value;
-  renderLoading(true, submit);
+  renderLoadingPopup(popupProfile, true);
 
   editProfile({name: nameInput.value, about: activityInput.value})
     .then((dataFromServer) => {
       nameProfile.textContent = dataFromServer.name;
       activityProfile.textContent = dataFromServer.about;
       closePopup(popupProfile);
-      setTimeout(function() { 
-        submit.value = value;
-      }, 1000);
     })
     .catch(err => {
       console.log(`При сохранении профиля: ${err.status}`)
     })
     .finally(() => {
-      renderLoading(false, submit);
+      renderLoadingPopup(popupProfile, false);
     });
 }
 
