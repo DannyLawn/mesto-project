@@ -6,6 +6,7 @@ function showInputError(formElement, inputElement, errorMessage, validObj) {
   errorElement.classList.add(validObj.errorClass);
 }
 
+
 //Скрыть сообщение ошибки инпута
 function hideInputError(formElement, inputElement, validObj) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -13,6 +14,7 @@ function hideInputError(formElement, inputElement, validObj) {
   errorElement.textContent = '';
   errorElement.classList.remove(validObj.errorClass);
 }
+
 
 //Проверка верности инпута
 function checkInputValidity(formElement, inputElement, validObj) {
@@ -23,12 +25,14 @@ function checkInputValidity(formElement, inputElement, validObj) {
   }
 }
 
+
 //Проверка, есть ли хотя бы один неверный инпут
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 }
+
 
 //Изменение состояния кнопки submit
 function toggleButtonState(inputList, buttonElement, validObj) {
@@ -40,6 +44,7 @@ function toggleButtonState(inputList, buttonElement, validObj) {
     buttonElement.disabled = false;
   }
 }
+
 
 //Добавление обработчиков ввода инпутам
 function setEventListeners(formElement, validObj) {
@@ -53,6 +58,7 @@ function setEventListeners(formElement, validObj) {
     });
   });
 }
+
 
 //Включение проверки форм
 function enableValidation(validObj) {

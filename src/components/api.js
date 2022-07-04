@@ -77,7 +77,7 @@ function likeCard(cardId) {
     .then(onResponce)
 }
 
-//Убрать лайк
+//Снять лайк
 function offLikeCard(cardId) {
   return fetch(`${config.url}/cards/likes/${cardId}`, {
     method: 'DELETE',
@@ -85,14 +85,6 @@ function offLikeCard(cardId) {
   })
     .then(onResponce)
 }
-
-
-
-
-
-
-
-
 
 
 

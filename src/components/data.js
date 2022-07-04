@@ -1,6 +1,6 @@
 //Профиль
 const profile = document.querySelector('.profile');
-const editProfile = profile.querySelector('.profile__edit-button');
+const editProfileButton = profile.querySelector('.profile__edit-button');
 const nameProfile = profile.querySelector('.profile__name');
 const activityProfile = profile.querySelector('.profile__activity');
 const addCardButton = profile.querySelector('.profile__add-button');
@@ -59,4 +59,4 @@ const popups = document.querySelectorAll('.popup');
 
 
 
-export { profile, editProfile, nameProfile, activityProfile, addCardButton, popupProfile, formProfile, nameInput, activityInput, popupCard, formCard, inputCardName, inputCardImage, openCardPopup, openCardImage, openCardTitle, cardsContainer, validationObject, popups, deleteCardPopup, formDeleteCard, avatarContainer, profileAvatar, editAvatarPopup, editAvatarForm, inputAvatarLink };
+export { profile, editProfileButton, nameProfile, activityProfile, addCardButton, popupProfile, formProfile, nameInput, activityInput, popupCard, formCard, inputCardName, inputCardImage, openCardPopup, openCardImage, openCardTitle, cardsContainer, validationObject, popups, deleteCardPopup, formDeleteCard, avatarContainer, profileAvatar, editAvatarPopup, editAvatarForm, inputAvatarLink };
