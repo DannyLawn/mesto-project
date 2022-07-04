@@ -70,7 +70,6 @@ function openEditAvatar() {
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
 
-
   renderLoadingPopup(editAvatarPopup, true);
 
   editAvatarProfile({avatar: inputAvatarLink.value})
@@ -98,7 +97,6 @@ function openAddCard() {
 //Сохранение добавленной карточки
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault(); 
-
 
   renderLoadingPopup(popupCard, true);
 
