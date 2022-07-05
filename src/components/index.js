@@ -28,7 +28,7 @@ function updateUser(data) {
 //Загрузка карточек 
 function updateCards(cardData, userId) {
   cardData.reverse().forEach(card => {
-    const cardElement = createCard(card);
+    const cardElement = createCard(card, handleCardClick, handleDeleteCard, toggleLike);
     cardElementsOption(card, userId, cardElement);    
     addCard(cardElement);
   });
@@ -102,7 +102,7 @@ function handleAddCardFormSubmit(evt) {
 
   addNewCard({name: inputCardName.value, link: inputCardImage.value})
     .then((dataFromServer) => {
-      addCard(createCard(dataFromServer));
+      addCard(createCard(dataFromServer, handleCardClick, handleDeleteCard, toggleLike));
       closePopup(popupCard);
     })
     .catch(err => {
@@ -222,7 +222,3 @@ editAvatarForm.addEventListener('submit', handleAvatarFormSubmit);
 
 //Включение валидации
 enableValidation(validationObject);
-
-
-
-export { addCard, handleCardClick, handleDeleteCard, toggleLike };

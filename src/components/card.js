@@ -2,13 +2,9 @@
 import { cardsContainer } from './data.js';
 
 
-//Импорт функций основного скрипта
-import { handleCardClick, handleDeleteCard, toggleLike } from './index.js';
-
-
 
 //Создание карточки
-function createCard(card) {
+function createCard(card, handleCardClick, handleDeleteCard, toggleLike) {
   const cardId = card._id;
   const cardTemplate = cardsContainer.querySelector('.card-template').content;
   const cardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
