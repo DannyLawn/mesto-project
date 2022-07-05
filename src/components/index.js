@@ -4,7 +4,7 @@ import '../pages/index.css';
 import { inputAvatarLink, deleteCardPopup, openCardImage, openCardTitle, openCardPopup, editProfileButton, addCardButton, popupCard, cardsContainer, formProfile, editAvatarPopup, inputCardImage, inputCardName, nameInput, formCard, popupProfile, activityInput, validationObject, avatarContainer, editAvatarForm, nameProfile, activityProfile, profileAvatar } from './data.js';
  
 //Импорт действий с карточками
-import { createCard, deleteCard, cardElementsOption } from './card.js';
+import { createCard, deleteCard, cardElementsOption, putLike, removeLike } from './card.js';
 
 //Импорт общих функций модальных окон
 import { openPopup, closePopup, resetValidation, renderLoadingPopup } from './modal.js';
@@ -169,27 +169,15 @@ function handleDeleteCard(cardElement, cardId) {
 //Переключатель лайка
 function toggleLike(cardId, likesCount, evt) {
   if (!evt.target.classList.contains("elements__like-button_enabled")) {
-    likeCard(cardId)
-      .then(data => {
-        evt.target.classList.add("elements__like-button_enabled");
-        likesCount.textContent = data.likes.length;
-        if (data.likes.length === 0) {
-          likesCount.style.display = "none";
-        } else {
-          likesCount.style.display = "block";
-        }
-      })
-      .catch(err => console.log(err.status))
-  } else {
-    offLikeCard(cardId)
+  likeCard(cardId)
     .then(data => {
-      evt.target.classList.remove("elements__like-button_enabled");
-      likesCount.textContent = data.likes.length;
-      if (data.likes.length === 0) {
-        likesCount.style.display = "none";
-      } else {
-        likesCount.style.display = "block";
-      }
+      putLike(data, likesCount, evt);
+    })
+    .catch(err => console.log(err.status))
+  } else {
+  offLikeCard(cardId)
+    .then(data => {
+      removeLike(data, likesCount, evt);
     })
     .catch(err => console.log(err.status))
   }  

@@ -48,6 +48,30 @@ function cardElementsOption(card, userId, cardElement) {
 }
 
 
+//Добавление лайка
+function putLike(data, likesCount, evt) {
+  evt.target.classList.add("elements__like-button_enabled");
+  likesCount.textContent = data.likes.length;
+  if (data.likes.length === 0) {
+    likesCount.style.display = "none";
+  } else {
+    likesCount.style.display = "block";
+  }
+}
+
+
+//Удаление лайка
+function removeLike(data, likesCount, evt) {
+  evt.target.classList.remove("elements__like-button_enabled");
+  likesCount.textContent = data.likes.length;
+  if (data.likes.length === 0) {
+    likesCount.style.display = "none";
+  } else {
+    likesCount.style.display = "block";
+  }
+}
+
+
 //Удаление карточки
 const deleteCard = (card) => {
   card.remove();
@@ -56,4 +80,4 @@ const deleteCard = (card) => {
 
 
 
-export { createCard, deleteCard, cardElementsOption };
+export { createCard, deleteCard, cardElementsOption, putLike, removeLike };
