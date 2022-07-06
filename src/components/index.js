@@ -70,7 +70,7 @@ function openEditAvatar() {
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
 
-  renderLoadingPopup(editAvatarPopup, true);
+  renderLoadingPopup(editAvatarPopup, 'Сохранение...');
 
   editAvatarProfile({avatar: inputAvatarLink.value})
     .then((data) => {
@@ -81,7 +81,9 @@ function handleAvatarFormSubmit(evt) {
       console.log(`При обновлении аватарки: ${err.status}`)
     })
     .finally(() => {
-      renderLoadingPopup(editAvatarPopup, false);
+      setTimeout(function() { 
+        renderLoadingPopup(editAvatarPopup, 'Сохранить');
+      }, 1000);
     });
 }
 
@@ -98,7 +100,7 @@ function openAddCard() {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault(); 
 
-  renderLoadingPopup(popupCard, true);
+  renderLoadingPopup(popupCard, 'Сохранение...');
 
   addNewCard({name: inputCardName.value, link: inputCardImage.value})
     .then((dataFromServer) => {
@@ -109,7 +111,9 @@ function handleAddCardFormSubmit(evt) {
       console.log(`При добавлении карточки: ${err.status}`)
     })
     .finally(() => {
-      renderLoadingPopup(popupCard, false);
+      setTimeout(function() { 
+        renderLoadingPopup(popupCard, 'Создать');
+      }, 1000);
     });
  
 }
@@ -119,7 +123,7 @@ function handleAddCardFormSubmit(evt) {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); 
 
-  renderLoadingPopup(popupProfile, true);
+  renderLoadingPopup(popupProfile, 'Сохранение...');
 
   editProfile({name: nameInput.value, about: activityInput.value})
     .then((dataFromServer) => {
@@ -131,7 +135,9 @@ function handleProfileFormSubmit(evt) {
       console.log(`При сохранении профиля: ${err.status}`)
     })
     .finally(() => {
-      renderLoadingPopup(popupProfile, false);
+      setTimeout(function() { 
+        renderLoadingPopup(popupProfile, 'Сохранить');
+      }, 1000);
     });
 }
 

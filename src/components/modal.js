@@ -32,18 +32,9 @@ popups.forEach((popup) => {
 
 
 //Отображать процесс загрузки на кнопках submit
-function renderLoadingPopup(popup, isLoading) {
+function renderLoadingPopup(popup, string) {
   const submit = popup.querySelector('.popup__input-submit');
-  const value = submit.value;
-
-  if(isLoading) {
-    submit.value = "Сохранение...";
-  } else { 
-    return;
-  }
-  setTimeout(function() { 
-    submit.value = value;
-  }, 1000);
+  submit.value = string;
 }
 
 
