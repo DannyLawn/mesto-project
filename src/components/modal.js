@@ -1,8 +1,5 @@
 //Импорт глобальных переменных
-import { validationObject, popups } from './data.js';
- 
-//Импорт валидации форм
-import { hideInputError, toggleButtonState } from './validate.js';
+import { popups } from './data.js';
 
 
 
@@ -47,18 +44,6 @@ function closeOnEsc(evt) {
 }
 
 
-//Сброс валидации
-function resetValidation(popup) {
-  const formElement = popup.querySelector('.popup__form');
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input-text'));
-  const buttonElement = formElement.querySelector('.popup__input-submit');
-  inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement, validationObject);
-  });
-  toggleButtonState(inputList, buttonElement, validationObject);
-}
 
-
-
-export { openPopup, closePopup, closeOnEsc, resetValidation, renderLoadingPopup };
+export { openPopup, closePopup, closeOnEsc, renderLoadingPopup };
 

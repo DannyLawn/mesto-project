@@ -1,27 +1,43 @@
+import { validationObject } from './data.js';
+
+
+
+//Сброс валидации
+function resetValidation(popup) {
+  const formElement = popup.querySelector(`.${validationObject.formSelector}`);
+  const inputList = Array.from(formElement.querySelectorAll(`.${validationObject.inputSelector}`));
+  const buttonElement = formElement.querySelector(`.${validationObject.submitButtonSelector}`);
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement);
+  });
+  toggleButtonState(inputList, buttonElement);
+}
+
+
 //Показать сообщение ошибки инпута
-function showInputError(formElement, inputElement, errorMessage, validObj) {
+function showInputError(formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(validObj.inputErrorClass);
+  inputElement.classList.add(validationObject.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(validObj.errorClass);
+  errorElement.classList.add(validationObject.errorClass);
 }
 
 
 //Скрыть сообщение ошибки инпута
-function hideInputError(formElement, inputElement, validObj) {
+function hideInputError(formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(validObj.inputErrorClass);
+  inputElement.classList.remove(validationObject.inputErrorClass);
   errorElement.textContent = '';
-  errorElement.classList.remove(validObj.errorClass);
+  errorElement.classList.remove(validationObject.errorClass);
 }
 
 
 //Проверка верности инпута
-function checkInputValidity(formElement, inputElement, validObj) {
+function checkInputValidity(formElement, inputElement) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, validObj);
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    hideInputError(formElement, inputElement, validObj);
+    hideInputError(formElement, inputElement);
   }
 }
 
@@ -35,39 +51,39 @@ function hasInvalidInput(inputList) {
 
 
 //Изменение состояния кнопки submit
-function toggleButtonState(inputList, buttonElement, validObj) {
+function toggleButtonState(inputList, buttonElement) {
   if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validObj.inactiveButtonClass);
+    buttonElement.classList.add(validationObject.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove(validObj.inactiveButtonClass);
+    buttonElement.classList.remove(validationObject.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 }
 
 
 //Добавление обработчиков ввода инпутам
-function setEventListeners(formElement, validObj) {
-  const inputList = Array.from(formElement.querySelectorAll(`.${validObj.inputSelector}`));
-  const buttonElement = formElement.querySelector(`.${validObj.submitButtonSelector}`);
-  toggleButtonState(inputList, buttonElement, validObj);
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(`.${validationObject.inputSelector}`));
+  const buttonElement = formElement.querySelector(`.${validationObject.submitButtonSelector}`);
+  toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function() {
-      checkInputValidity(formElement, inputElement, validObj);
-      toggleButtonState(inputList, buttonElement, validObj);
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
     });
   });
 }
 
 
 //Включение проверки форм
-function enableValidation(validObj) {
-  const formList = Array.from(document.querySelectorAll(`.${validObj.formSelector}`));
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll(`.${validationObject.formSelector}`));
   formList.forEach((formElement) => {
-    setEventListeners(formElement, validObj);
+    setEventListeners(formElement);
   });
 }
 
 
 
-export { showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation };
+export { showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation, resetValidation };
