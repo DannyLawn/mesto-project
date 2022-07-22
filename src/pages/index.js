@@ -9,5 +9,7 @@ const userInfo = new UserInfo(userInfoSelectors);
 
 api.getUserInfo()
 .then(res => {
+  console.log(res);
 userInfo.renderUserInfo(res.name, res.about);
+userInfo.renderUserAvatar(res.avatar);
 });

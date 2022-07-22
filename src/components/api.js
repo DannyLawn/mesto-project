@@ -4,7 +4,7 @@ class Api {
     this._headers = config.headers;
   }
 
- _checkResponce(res) {
+  _checkResponce(res) {
     return res.ok ? res.json() : Promise.reject(res);
   }
   
@@ -14,7 +14,7 @@ class Api {
     return fetch(`${this._url}/users/me `, {
       headers: this._headers
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Загружаю все карточки
@@ -22,7 +22,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Редактирую данные профиля
@@ -32,7 +32,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Редактирую аватарку профиля
@@ -42,7 +42,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   
@@ -52,7 +52,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Добавляю карточку
@@ -62,7 +62,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Добавить лайк
@@ -71,7 +71,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
   
   //Снять лайк
@@ -80,7 +80,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._checkResponse)
+      .then(this._checkResponce)
   }
 
   
