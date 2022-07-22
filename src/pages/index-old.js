@@ -13,7 +13,7 @@ import { openPopup, closePopup, renderLoadingPopup } from '../components/modal.j
 import { enableValidation, resetValidation } from '../components/validate.js';
 
 //Импорт api
-import { getAllCards, removeCard, uploadingUserInfo, addNewCard, editProfile, editAvatarProfile, likeCard, offLikeCard } from '../components/api.js';
+import { getAllCards, removeCard, uploadingUserInfo, addNewCard, editProfile, editAvatarProfile, likeCard, offLikeCard } from '../components/Api.js';
 
 
 

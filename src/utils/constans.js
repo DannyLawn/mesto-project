@@ -6,4 +6,10 @@ const config = {
   }
 }
 
-export { config };
+const userInfoSelectors = {
+  nameSelector: '.profile__name',
+  activitySelector: '.profile__activity',
+  avatarSelector: '.profile__avatar'
+}
+
+export { config, userInfoSelectors };
