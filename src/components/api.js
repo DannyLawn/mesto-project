@@ -1,3 +1,7 @@
+class Api {
+  
+}
+
 const config = {
   url: "https://nomoreparties.co/v1/plus-cohort-13",
   headers: {
