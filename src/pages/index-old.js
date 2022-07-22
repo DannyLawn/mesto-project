@@ -1,19 +1,19 @@
 import '../pages/index.css';
 
 //Импорт данных
-import { inputAvatarLink, deleteCardPopup, openCardImage, openCardTitle, openCardPopup, editProfileButton, addCardButton, popupCard, cardsContainer, formProfile, editAvatarPopup, inputCardImage, inputCardName, nameInput, formCard, popupProfile, activityInput, avatarContainer, editAvatarForm, nameProfile, activityProfile, profileAvatar } from './data.js';
+import { inputAvatarLink, deleteCardPopup, openCardImage, openCardTitle, openCardPopup, editProfileButton, addCardButton, popupCard, cardsContainer, formProfile, editAvatarPopup, inputCardImage, inputCardName, nameInput, formCard, popupProfile, activityInput, avatarContainer, editAvatarForm, nameProfile, activityProfile, profileAvatar } from '../components/data.js';
  
 //Импорт действий с карточками
-import { createCard, deleteCard, cardElementsOption, putLike, removeLike } from './card.js';
+import { createCard, deleteCard, cardElementsOption, putLike, removeLike } from '../components/card.js';
 
 //Импорт общих функций модальных окон
-import { openPopup, closePopup, renderLoadingPopup } from './modal.js';
+import { openPopup, closePopup, renderLoadingPopup } from '../components/modal.js';
 
 //Импорт валидации форм
-import { enableValidation, resetValidation } from './validate.js';
+import { enableValidation, resetValidation } from '../components/validate.js';
 
 //Импорт api
-import { getAllCards, removeCard, uploadingUserInfo, addNewCard, editProfile, editAvatarProfile, likeCard, offLikeCard } from './api.js';
+import { getAllCards, removeCard, uploadingUserInfo, addNewCard, editProfile, editAvatarProfile, likeCard, offLikeCard } from '../components/api.js';
 
 
 

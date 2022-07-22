@@ -1,95 +1,92 @@
 class Api {
+  constructor(config) {
+    this._url = config.url;
+    this._headers = config.headers;
+  }
+
+ _checkResponce(res) {
+    return res.ok ? res.json() : Promise.reject(res);
+  }
+  
+  
+  //Загружаю данные пользователя
+  getUserInfo() {
+    return fetch(`${this._url}/users/me `, {
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Загружаю все карточки
+  getAllCards() {
+    return fetch(`${this._url}/cards`, {
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Редактирую данные профиля
+  editProfile(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Редактирую аватарку профиля
+  editAvatarProfile(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(this._checkResponse)
+  }
+  
+  
+  //Удаляю карточку
+  removeCard(dataId) {
+    return fetch(`${this._url}/cards/${dataId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Добавляю карточку
+  addNewCard(data) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Добавить лайк
+  putLike(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+  
+  //Снять лайк
+  removeLike(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
+
   
 }
 
-const config = {
-  url: "https://nomoreparties.co/v1/plus-cohort-13",
-  headers: {
-    "Content-type": "application/json",
-    "Authorization": "04094868-01f7-4148-b349-0bbb01e31812"
-  }
-}
-
-
-const onResponce = (res) => {
-  return res.ok ? res.json() : Promise.reject(res);
-}
-
-
-//Загружаю данные пользователя
-function uploadingUserInfo() {
-  return fetch(`${config.url}/users/me `, {
-    headers: config.headers
-  })
-    .then(onResponce)
-}
-
-//Загружаю все карточки
-function getAllCards() {
-  return fetch(`${config.url}/cards`, {
-    headers: config.headers
-  })
-    .then(onResponce)
-}
-
-//Редактирую данные профиля
-function editProfile(data) {
-  return fetch(`${config.url}/users/me`, {
-    method: 'PATCH',
-    headers: config.headers,
-    body: JSON.stringify(data)
-  })
-    .then(onResponce)
-}
-
-//Редактирую аватарку профиля
-function editAvatarProfile(data) {
-  return fetch(`${config.url}/users/me/avatar`, {
-    method: 'PATCH',
-    headers: config.headers,
-    body: JSON.stringify(data)
-  })
-    .then(onResponce)
-}
-
-
-//Удаляю карточку
-function removeCard(dataId) {
-  return fetch(`${config.url}/cards/${dataId}`, {
-    method: 'DELETE',
-    headers: config.headers
-  })
-    .then(onResponce)
-}
-
-//Добавляю карточку
-function addNewCard(data) {
-  return fetch(`${config.url}/cards`, {
-    method: 'POST',
-    headers: config.headers,
-    body: JSON.stringify(data)
-  })
-    .then(onResponce)
-}
-
-//Добавить лайк
-function likeCard(cardId) {
-  return fetch(`${config.url}/cards/likes/${cardId}`, {
-    method: 'PUT',
-    headers: config.headers
-  })
-    .then(onResponce)
-}
-
-//Снять лайк
-function offLikeCard(cardId) {
-  return fetch(`${config.url}/cards/likes/${cardId}`, {
-    method: 'DELETE',
-    headers: config.headers
-  })
-    .then(onResponce)
-}
 
 
 
-export { getAllCards, addNewCard, removeCard, editProfile, uploadingUserInfo, editAvatarProfile, likeCard, offLikeCard };
+export { Api };
