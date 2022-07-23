@@ -14,16 +14,15 @@ const userInfoSelectors = {
   avatarSelector: '.profile__avatar'
 }
 
-const cardElementSelectors = {
+const cardSelectors = {
   cardTemplateSelector: '.card-template',
   cardElementSelector: '.elements__element',
   cardImageSelector: '.elements__image',
   cardNameSelector: '.elements__element-title',
   deleteButtonSelector: '.elements__delete-button',
   likeButtonSelector:  '.elements__like-button',
-  likesCountColector: '.elements__like-count',
-  likeButtonActiveClass: 'elements__like-button_enabled',
-  deleteButtonActiveClass: 'elements__delete-button_enabled'
+  likesCountSelector: '.elements__like-count',
+  likeButtonActiveClass: 'elements__like-button_enabled'
 }
 
-export { config, cardsContainer, userInfoSelectors, cardElementSelectors };
+export { config, cardsContainer, userInfoSelectors, cardSelectors };

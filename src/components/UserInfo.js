@@ -21,6 +21,10 @@ class UserInfo {
     }
   };
 
+  getUserId(id) {
+    this.userId = id;
+  }
+
   renderUserInfo(newName, newActivity) {
     this._setUserInfo(newName, newActivity);
     this._nameElement.textContent = this._name;
