@@ -13,9 +13,22 @@ const cardSection = new Section(cardsContainer, (cardData) => {
     deleteCardHandler: () => { 
       
   }, likeCardHandler: () => {
-  
+    if (!placeCard.isLiked) {
+      api.putLike(placeCard.id)
+        .then(cardData => {
+          placeCard.toggleLikeModifier(cardData.likes)
+        })
+        .catch(err => console.log(err))
+    }
+    else {
+      api.removeLike(placeCard.id)
+      .then(cardData => {
+        placeCard.toggleLikeModifier(cardData.likes)
+      })
+      .catch(err => console.log(err))
+    }
   }, clickImageHandler: () => {
-
+    
 ;  }})
   const newPlaceCard = placeCard.generate(userInfo.id);
   cardSection.addElement(newPlaceCard)
@@ -27,8 +40,5 @@ Promise.all([api.getUserInfo(), api.getAllCards()])
   userInfo.renderUserInfo(currentUserInfo.name, currentUserInfo.about);
   userInfo.renderUserAvatar(currentUserInfo.avatar);
   userInfo.getUserId(currentUserInfo._id);
-
-
   cardSection.renderElements(initialCards);
-
 })

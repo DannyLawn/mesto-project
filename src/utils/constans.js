@@ -25,4 +25,14 @@ const cardSelectors = {
   likeButtonActiveClass: 'elements__like-button_enabled'
 }
 
+const popupOptions = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__input-submit',
+  closeButtonSelector: '.popup__toggle',
+  imageSelector: '.popup__image',
+  captionSelector: '.popup__title',
+  openedPopupClass: 'popup_opened'
+}
+
 export { config, cardsContainer, userInfoSelectors, cardSelectors };
