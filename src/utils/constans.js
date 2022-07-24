@@ -43,4 +43,10 @@ const typesOfPopups = {
   deleteCardPopup: '#delete-card-popup'
 }
 
-export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions };
+const buttons = {
+  profileOpenButton: document.querySelector('.profile__edit-button'),
+  placeOpenButton: document.querySelector('.profile__add-button'),
+  avatarOpenButton: document.querySelector('.profile__avatar')
+}
+
+export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions, buttons };

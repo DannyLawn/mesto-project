@@ -9,21 +9,21 @@ class Popup {
     this._setEventListeners();
   }
 
-  _close() {
+  close() {
     this._popup.classList.remove(this._popupOptions.openedPopupClass);
     this._removeEventListeners();
   }
 
   _handlePressEsc = (evt) => {
     if (evt.key === 'Escape') {
-      this._close();
+      this.close();
     }
   }
 
   _handlePressClick = (evt) => {
     if (evt.target.classList.contains(this._popupOptions.openedPopupClass) ||
         evt.target.classList.contains(this._popupOptions.closeButtonClass)) {
-        this._close();
+        this.close();
         }
   }
 
@@ -33,8 +33,8 @@ class Popup {
   }
 
   _removeEventListeners() {
-    document.removeEventListener('keydown', this._handlePressEsc);
     this._popup.removeEventListener('mousedown', this._handlePressClick);
+    document.removeEventListener('keydown', this._handlePressEsc);
   }
 }
 
