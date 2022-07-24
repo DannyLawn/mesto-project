@@ -29,10 +29,18 @@ const popupOptions = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__input-submit',
-  closeButtonSelector: '.popup__toggle',
+  closeButtonClass: 'popup__toggle',
   imageSelector: '.popup__image',
   captionSelector: '.popup__title',
   openedPopupClass: 'popup_opened'
 }
 
-export { config, cardsContainer, userInfoSelectors, cardSelectors };
+const typesOfPopups = {
+  editProfilePopup: '#profile-popup',
+  editAvatarPopup: '#edit-avatar-popup',
+  createCardPopup: '#add-card-popup',
+  openCardPopup: '#open-card',
+  deleteCardPopup: '#delete-card-popup'
+}
+
+export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions };
