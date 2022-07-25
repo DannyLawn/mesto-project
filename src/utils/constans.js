@@ -46,7 +46,7 @@ const typesOfPopups = {
 const buttons = {
   profileOpenButton: document.querySelector('.profile__edit-button'),
   placeOpenButton: document.querySelector('.profile__add-button'),
-  avatarOpenButton: document.querySelector('.profile__avatar')
+  avatarOpenButton: document.querySelector('.profile__avatar-container')
 }
 
 export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions, buttons };

@@ -24,7 +24,7 @@ class Card {
   }
 
   _hideDeleteButton(userId) {
-    if (this._cardData._id !== userId) {
+    if (this._cardData.owner._id !== userId) {
       this._element.querySelector(this._elementSelectors.deleteButtonSelector).style.display = "none";
     }    
   }
