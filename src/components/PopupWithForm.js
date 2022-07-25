@@ -36,7 +36,7 @@ class PopupWithForm extends Popup {
   toggleSavingStatus() {
       this._submitButton.value === this._defaultSubmitValue 
       ? this._submitButton.value = "Сохранение..."
-      : this._submitButton.value = "Сохранить";
+      : this._submitButton.value = this._defaultSubmitValue;
   }
 }
 
