@@ -6,7 +6,8 @@ class PopupWithForm extends Popup {
   this._submitCallback = submitCallback;
   this._form = this._popup.querySelector(popupOptions.formSelector);
   this._inputList = this._popup.querySelectorAll(popupOptions.inputSelector);
-  this._submitButton = this._popup.querySelectorAll(popupOptions.submitButtonSelector);
+  this._submitButton = this._popup.querySelector(popupOptions.submitButtonSelector);
+  this._defaultSubmitValue = this._submitButton.value;
   }
 
   _getInputValues() {
@@ -33,9 +34,9 @@ class PopupWithForm extends Popup {
   }
 
   toggleSavingStatus() {
-    this._submitButton.textContent === "Сохранить"
-      ? (this._submitButton.value = "Сохранение...")
-      : (this._submitButton.value = "Сохранить")
+      this._submitButton.value === this._defaultSubmitValue 
+      ? this._submitButton.value = "Сохранение..."
+      : this._submitButton.value = "Сохранить";
   }
 }
 
