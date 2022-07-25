@@ -118,7 +118,7 @@ const popupWithDeletion = new popupWithConfirmation(typesOfPopups.deleteCardPopu
       console.log(err);
       popupWithDeletion.close();
     })
-    .finally(() => popupWithCard.toggleSavingStatus());3
+    .finally(() => popupWithDeletion.toggleSavingStatus());3
 })
 
 const cardSection = new Section(cardsContainer, (cardData) => {
