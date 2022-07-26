@@ -17,11 +17,12 @@ import {
   popupOptions,
   buttons,
 } from "../utils/constans.js";
-import { validationObject } from '../utils/constans.js';
+import { validationObject } from "../utils/constans.js";
 import { FormValidator } from "../components/FormValidator";
 
 const api = new Api(config);
 const userInfo = new UserInfo(userInfoSelectors);
+
 const popupWithImage = new PopupWithImage(
   typesOfPopups.openCardPopup,
   popupOptions
@@ -42,7 +43,7 @@ const popupWithProfile = new PopupWithForm(
         popupWithProfile.close();
       })
       .catch((err) => {
-        console.log(err.type)
+        console.log(err.type);
         popupWithProfile.close();
       })
       .finally(() => popupWithProfile.toggleSavingStatus());
@@ -69,7 +70,7 @@ const popupWithAvatar = new PopupWithForm(
         popupWithAvatar.close();
       })
       .catch((err) => {
-        console.log(err.type)
+        console.log(err.type);
         popupWithAvatar.close();
       })
       .finally(() => popupWithAvatar.toggleSavingStatus());
@@ -109,20 +110,25 @@ buttons.placeOpenButton.addEventListener("click", () => {
 });
 
 let cardToDelete = null;
-const popupWithDeletion = new popupWithConfirmation(typesOfPopups.deleteCardPopup, popupOptions, () => {
-  popupWithDeletion.toggleSavingStatus();
-  console.log(cardToDelete)
-  api.removeCard(cardToDelete.id)
-    .then(() => {
-      cardToDelete.remove();
-      popupWithDeletion.close();
-    })
-    .catch((err) => {
-      console.log(err);
-      popupWithDeletion.close();
-    })
-    .finally(() => popupWithDeletion.toggleSavingStatus());3
-})
+const popupWithDeletion = new popupWithConfirmation(
+  typesOfPopups.deleteCardPopup,
+  popupOptions,
+  () => {
+    popupWithDeletion.toggleSavingStatus();
+    console.log(cardToDelete);
+    api
+      .removeCard(cardToDelete.id)
+      .then(() => {
+        cardToDelete.remove();
+        popupWithDeletion.close();
+      })
+      .catch((err) => {
+        console.log(err);
+        popupWithDeletion.close();
+      })
+      .finally(() => popupWithDeletion.toggleSavingStatus());
+  }
+);
 
 const cardSection = new Section(cardsContainer, (cardData) => {
   const newPlaceCard = createNewCard(cardData);
@@ -139,10 +145,10 @@ Promise.all([api.getUserInfo(), api.getAllCards()]).then(
   }
 );
 
-formList.forEach ((formElement) => {
+formList.forEach((formElement) => {
   const formValidator = new FormValidator(formElement, validationObject);
   formValidator.enableValidation();
-})
+});
 
 const createNewCard = (cardData) => {
   const placeCard = new Card({

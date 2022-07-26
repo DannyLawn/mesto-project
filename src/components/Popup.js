@@ -15,28 +15,29 @@ class Popup {
   }
 
   _handlePressEsc = (evt) => {
-    if (evt.key === 'Escape') {
+    if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
   _handlePressClick = (evt) => {
-    if (evt.target.classList.contains(this._popupOptions.openedPopupClass) ||
-        evt.target.classList.contains(this._popupOptions.closeButtonClass)) {
-        this.close();
-        }
-  }
+    if (
+      evt.target.classList.contains(this._popupOptions.openedPopupClass) ||
+      evt.target.classList.contains(this._popupOptions.closeButtonClass)
+    ) {
+      this.close();
+    }
+  };
 
   _setEventListeners() {
-    this._popup.addEventListener('mousedown', this._handlePressClick);
-    document.addEventListener('keydown', this._handlePressEsc);
+    this._popup.addEventListener("mousedown", this._handlePressClick);
+    document.addEventListener("keydown", this._handlePressEsc);
   }
 
   _removeEventListeners() {
-    this._popup.removeEventListener('mousedown', this._handlePressClick);
-    document.removeEventListener('keydown', this._handlePressEsc);
+    this._popup.removeEventListener("mousedown", this._handlePressClick);
+    document.removeEventListener("keydown", this._handlePressEsc);
   }
 }
-
 
 export { Popup };

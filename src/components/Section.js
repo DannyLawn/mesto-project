@@ -9,10 +9,10 @@ class Section {
   }
 
   renderElements(elements) {
-    elements.reverse().forEach(element => {
+    elements.reverse().forEach((element) => {
       this._renderer(element);
     });
   }
 }
 
-export { Section }
+export { Section };
