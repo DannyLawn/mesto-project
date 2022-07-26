@@ -16,6 +16,8 @@ import {
   popupOptions,
   buttons,
 } from "../utils/constans.js";
+import { validationObject } from '../utils/constans.js';
+import { FormValidator } from "../components/FormValidator";
 
 const api = new Api(config);
 const userInfo = new UserInfo(userInfoSelectors);
@@ -135,6 +137,13 @@ Promise.all([api.getUserInfo(), api.getAllCards()]).then(
     cardSection.renderElements(initialCards);
   }
 );
+
+console.log(Array.from(document.querySelectorAll(validationObject.formSelector)));
+
+Array.from(document.querySelectorAll(validationObject.formSelector)).forEach ((form) => {
+  const formValidator = new FormValidator(validationObject);
+  formValidator.enableValidation();
+})
 
 const createNewCard = (cardData) => {
   const placeCard = new Card({

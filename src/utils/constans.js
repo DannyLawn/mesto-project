@@ -49,4 +49,13 @@ const buttons = {
   avatarOpenButton: document.querySelector('.profile__avatar-container')
 }
 
-export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions, buttons };
+const validationObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__input-submit',
+  inactiveButtonClass: 'popup__input-submit_inactive',
+  inputErrorClass: 'popup__input-text_type-error',
+  errorClass: 'popup__input-error_active'
+};
+
+export { config, cardsContainer, userInfoSelectors, cardSelectors, typesOfPopups, popupOptions, buttons, validationObject };
