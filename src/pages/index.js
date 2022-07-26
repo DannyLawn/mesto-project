@@ -10,6 +10,7 @@ import { popupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import {
   config,
   cardsContainer,
+  formList,
   userInfoSelectors,
   cardSelectors,
   typesOfPopups,
@@ -138,10 +139,8 @@ Promise.all([api.getUserInfo(), api.getAllCards()]).then(
   }
 );
 
-console.log(Array.from(document.querySelectorAll(validationObject.formSelector)));
-
-Array.from(document.querySelectorAll(validationObject.formSelector)).forEach ((form) => {
-  const formValidator = new FormValidator(validationObject);
+formList.forEach ((formElement) => {
+  const formValidator = new FormValidator(formElement, validationObject);
   formValidator.enableValidation();
 })
 
