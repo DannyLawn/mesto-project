@@ -21,6 +21,11 @@ class popupWithConfirmation extends Popup {
     this._form.addEventListener("submit", this._submit);
   }
 
+  _removeEventListeners() {
+    super._removeEventListeners();
+    this._form.removeEventListener("submit", this._submit);
+  } 
+
   toggleSavingStatus() {
     this._submitButton.value === this._defaultSubmitValue
       ? (this._submitButton.value = "Удаление...")

@@ -12,36 +12,38 @@ class UserInfo {
     this._avatar = "";
   }
 
-  _setUserInfo(newName, newActivity) {
-    this._name = newName;
-    this._activity = newActivity;
+  _setUserInfo({ name, about, avatar, _id }) {
+    this._name = name;
+    this._activity = about;
+    this._avatar = avatar;
+    this.id = _id;
   }
 
   getUserInfo() {
     return {
-      name: this._name,
-      activity: this._activity,
+      profileName: this._name,
+      profileActivity: this._activity,
     };
   }
 
-  getUserId(id) {
-    this.userId = id;
-  }
+  // getUserId(id) {
+  //   this.userId = id;
+  // }
 
-  renderUserInfo(newName, newActivity) {
-    this._setUserInfo(newName, newActivity);
+  renderUserInfo({ name, about, avatar, _id }) {
+    this._setUserInfo({ name, about, avatar, _id });
     this._nameElement.textContent = this._name;
     this._activityElement.textContent = this._activity;
   }
 
-  renderUserAvatar(newAvatar) {
-    this._setUserAvatar(newAvatar);
+  renderUserAvatar({ name, about, avatar, _id }) {
+    this._setUserInfo({ name, about, avatar, _id });
     this._avatarElement.src = this._avatar;
   }
 
-  _setUserAvatar(newAvatar) {
-    this._avatar = newAvatar;
-  }
+  // _setUserAvatar(newAvatar) {
+  //   this._avatar = newAvatar;
+  // }
 }
 
 export { UserInfo };

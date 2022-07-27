@@ -39,12 +39,11 @@ const popupWithProfile = new PopupWithForm(
         about: inputValues.profileActivity,
       })
       .then((res) => {
-        userInfo.renderUserInfo(res.name, res.about);
+        userInfo.renderUserInfo(res);
         popupWithProfile.close();
       })
       .catch((err) => {
         console.log(err.type);
-        popupWithProfile.close();
       })
       .finally(() => popupWithProfile.toggleSavingStatus());
   }
@@ -52,9 +51,7 @@ const popupWithProfile = new PopupWithForm(
 
 buttons.profileOpenButton.addEventListener("click", () => {
   const actualUserInfo = userInfo.getUserInfo();
-  const form = document.forms.editProfile;
-  form.elements.profileName.value = actualUserInfo.name;
-  form.elements.profileActivity.value = actualUserInfo.activity;
+  popupWithProfile.setInputValues(actualUserInfo);
   popupWithProfile.open();
 });
 
@@ -66,12 +63,11 @@ const popupWithAvatar = new PopupWithForm(
     api
       .editAvatarProfile({ avatar: inputValues.avatarImageLink })
       .then((res) => {
-        userInfo.renderUserAvatar(res.avatar);
+        userInfo.renderUserAvatar(res);
         popupWithAvatar.close();
       })
       .catch((err) => {
         console.log(err.type);
-        popupWithAvatar.close();
       })
       .finally(() => popupWithAvatar.toggleSavingStatus());
   }
@@ -92,14 +88,11 @@ const popupWithCard = new PopupWithForm(
         link: inputValues.cardImageLink,
       })
       .then((res) => {
-        const newPlaceCard = createNewCard(res);
-        const newPlaceElement = newPlaceCard.generate(userInfo.userId);
-        cardSection.addElement(newPlaceElement);
+        cardSection.addElement(res);
         popupWithCard.close();
       })
       .catch((err) => {
         console.log(err.type);
-        popupWithCard.close();
       })
       .finally(() => popupWithCard.toggleSavingStatus());
   }
@@ -115,7 +108,6 @@ const popupWithDeletion = new popupWithConfirmation(
   popupOptions,
   () => {
     popupWithDeletion.toggleSavingStatus();
-    console.log(cardToDelete);
     api
       .removeCard(cardToDelete.id)
       .then(() => {
@@ -123,34 +115,13 @@ const popupWithDeletion = new popupWithConfirmation(
         popupWithDeletion.close();
       })
       .catch((err) => {
-        console.log(err);
-        popupWithDeletion.close();
+        console.log(err.type);
       })
       .finally(() => popupWithDeletion.toggleSavingStatus());
   }
 );
 
 const cardSection = new Section(cardsContainer, (cardData) => {
-  const newPlaceCard = createNewCard(cardData);
-  const newPlaceElement = newPlaceCard.generate(userInfo.userId);
-  cardSection.addElement(newPlaceElement);
-});
-
-Promise.all([api.getUserInfo(), api.getAllCards()]).then(
-  ([currentUserInfo, initialCards]) => {
-    userInfo.renderUserInfo(currentUserInfo.name, currentUserInfo.about);
-    userInfo.renderUserAvatar(currentUserInfo.avatar);
-    userInfo.getUserId(currentUserInfo._id);
-    cardSection.renderElements(initialCards);
-  }
-);
-
-formList.forEach((formElement) => {
-  const formValidator = new FormValidator(formElement, validationObject);
-  formValidator.enableValidation();
-});
-
-const createNewCard = (cardData) => {
   const placeCard = new Card({
     cardData,
     cardSelectors,
@@ -179,5 +150,20 @@ const createNewCard = (cardData) => {
       popupWithImage.open(cardData.link, cardData.name);
     },
   });
-  return placeCard;
-};
+  const newPlaceElement = placeCard.generate(userInfo.id);
+  return newPlaceElement;
+});
+
+Promise.all([api.getUserInfo(), api.getAllCards()]).then(
+  ([currentUserInfo, initialCards]) => {
+    userInfo.renderUserInfo(currentUserInfo);
+    userInfo.renderUserAvatar(currentUserInfo);
+    // userInfo.getUserId(currentUserInfo._id);
+    cardSection.renderElements(initialCards);
+  }
+);
+
+formList.forEach((formElement) => {
+  const formValidator = new FormValidator(formElement, validationObject);
+  formValidator.enableValidation();
+});
