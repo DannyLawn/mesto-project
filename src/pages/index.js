@@ -1,8 +1,8 @@
 import "../pages/index.css";
 
-import { Api } from "../components/Api.js";
+import { Api } from "../components/Xpi.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { Card } from "../components/Card.js";
+import { Card } from "../components/Xard.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -154,14 +154,14 @@ const cardSection = new Section(cardsContainer, (cardData) => {
   return newPlaceElement;
 });
 
-Promise.all([api.getUserInfo(), api.getAllCards()]).then(
-  ([currentUserInfo, initialCards]) => {
+Promise.all([api.getUserInfo(), api.getAllCards()])
+  .then(([currentUserInfo, initialCards]) => {
     userInfo.renderUserInfo(currentUserInfo);
     userInfo.renderUserAvatar(currentUserInfo);
     // userInfo.getUserId(currentUserInfo._id);
     cardSection.renderElements(initialCards);
-  }
-);
+  })
+  .catch((err) => console.log(err.type));
 
 formList.forEach((formElement) => {
   const formValidator = new FormValidator(formElement, validationObject);
